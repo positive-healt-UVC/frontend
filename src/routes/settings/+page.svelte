@@ -1,11 +1,9 @@
 <script>
-// @ts-nocheck
-
-      import BackButton from "$lib/components/BackButton.svelte";
-import Buttons from "$lib/components/Buttons.svelte";
+  import BackButton from "$lib/components/BackButton.svelte";
+  import Buttons from "$lib/components/Buttons.svelte";
 </script>
 
-<BackButton href={"/"} text={"Terug"}></BackButton>
+<BackButton href={"/"}></BackButton>
 
 <div>
   <div class="min-h-screen bg-sky flex flex-col items-center">
