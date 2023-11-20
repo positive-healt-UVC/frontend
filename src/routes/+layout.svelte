@@ -26,6 +26,7 @@
   bottom: 0;
   width: 100%;
   text-align: center;
+	border-top: 4px solid white;
 	background-color: #ff9e00;
 	}
 </style>
