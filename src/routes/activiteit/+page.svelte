@@ -14,7 +14,7 @@
         <div class="mt-5 pb-3">
             <div class="ml-5">
             <p class="font-bold">De Aanloop 1, 4335 AT Middelburg</p>
-            <p class="mt-5 font-bold">Groeps nummer:</p>
+            <p class="mt-5 font-bold">Groeps nummer: <a href="groups">1</a></p>
             <p class="font-bold">Start tijd:</p>
             <p class="font-bold">Eind tijd:</p>
             <div>
