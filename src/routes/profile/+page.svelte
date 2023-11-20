@@ -1,12 +1,9 @@
 <script>
-  import Buttons from "$lib/components/Buttons.svelte";
     import FormInput from "$lib/components/FormInput.svelte";
-  import UpcomingActivity from "$lib/components/UpcomingActivity.svelte";
-    import { text } from "@sveltejs/kit";
-    function toggleSelection(option) {
-            option.selected = !option.selected;
-        }
+    import BackButton from "$lib/components/BackButton.svelte";
 </script>
+
+<BackButton href={"/"}></BackButton>
 
 <div class="min-h-screen bg-sky flex flex-col items-center">
   <div class="h-2" />
@@ -46,7 +43,7 @@
       </div>
       
       <!-- Submit button outside the flex container -->
-      <input type="submit" value="Submit" class="w-30 flex items-center text-center 
+      <input type="submit" value="Opslaan" class="w-30 flex items-center text-center 
       justify-center px-8 py-3 
       border border-transparent 
       text-base font-medium 
