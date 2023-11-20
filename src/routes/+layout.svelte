@@ -11,10 +11,10 @@
 	</main>
 
 	<footer class="text-center">
-		<a href="/"><i class="fa-solid fa-house fa-2xl p-5 mb-2"></i></a>
-		<i class="fa-brands fa-accessible-icon fa-2xl p-5 mb-2"></i>
-		<a href="profile"><i class="fa-solid fa-user fa-2xl p-5 mb-2"></i></a>
-		<a href="settings"><i class="fa-solid fa-gear fa-2xl p-5 mb-2"></i></a>
+		<a href="/"><i class="fa-solid fa-house fa-2xl p-5 mb-2 mt-2"></i></a>
+		<i class="fa-brands fa-accessible-icon fa-2xl p-5 mb-2 mt-2"></i>
+		<a href="profile"><i class="fa-solid fa-user fa-2xl p-5 mb-2 mt-2"></i></a>
+		<a href="settings"><i class="fa-solid fa-gear fa-2xl p-5 mb-2 mt-2"></i></a>
 	</footer>
 	
 </div>
