@@ -6,19 +6,22 @@
 </script>
 <div class="bg-sky">
   <div class="min-h-screen flex flex-col items-center">
-    <div class="bg-slate-500 w-full">
-        <p>menu</p>
-    </div>
     <div class="w-5/6 rounded-md mt-5">
         <h1 class="text-3xl text-center font-bold">Zwemmen</h1>
         <div class="mt-5">
             <img src=".//imgs/zwemmen.jpg" alt="zwemmen" class="rounded-md">
         </div>
-        <div class="mt-5 bg-white rounded-md pb-3">
+        <div class="mt-5 pb-3">
             <div class="ml-5">
             <p class="font-bold">De Aanloop 1, 4335 AT Middelburg</p>
             <p class="mt-5 font-bold">Start tijd:</p>
             <p class="font-bold">Eind tijd:</p>
+            <div>
+                <p class="font-bold">Handicaps:</p>
+                <i class="fa-solid fa-ear-deaf fa-lg" style="color: #000000;"></i>
+                <i class="fa-solid fa-eye-slash fa-lg ml-2" style="color: #000000;"></i>
+                <i class="fa-solid fa-wheelchair fa-lg ml-2" style="color: #000000;"></i>
+            </div>
         </div>
         <div class="button-color rounded-md w-11/12 ml-3">
             <p class="mt-5 font-bold ml-2">Beschrijving:</p>
