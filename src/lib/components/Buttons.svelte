@@ -5,7 +5,7 @@
 
 <div>
   <div class="grid grid-cols-1 gap-4 mb-5 mx-5">
-    <a href={href};
+    <a href={href}
           class="w-30 flex items-center text-center 
           justify-center px-8 py-3 
           border border-transparent 
