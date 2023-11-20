@@ -15,6 +15,8 @@
 		<i class="fa-brands fa-accessible-icon fa-2xl p-5 mb-2"></i>
 		<i class="fa-solid fa-user fa-2xl p-5 mb-2"></i>
 		<a href="settings"><i class="fa-solid fa-gear fa-2xl p-5 mb-2"></i></a>
+		<a href="/profile"><i class="fa-solid fa-user fa-2xl p-5 mb-2"></i></a>
+		<i class="fa-solid fa-gear fa-2xl p-5 mb-2"></i>
 	</footer>
 	
 </div>
