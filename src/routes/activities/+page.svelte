@@ -3,12 +3,12 @@
     import Activity from '$lib/components/activities/Activity.svelte';
 </script>
 
-    <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold mb-4">Activiteiten</h1>
+    <div class="min-h-screen flex flex-col items-center">
+        <h1 class=" m-5 py-8 text-2xl font-bold">Activiteiten</h1>
     
         {#each $activities as activity (activity.id)}
         <div class="mb-2">
-            <a href={`/activities/${activity.id}`} class="block text-blue-500 hover:underline">{activity.title}</a>
+            <a href={`/activities/${activity.id}`} class="block hover:underline w-60 sm:h-12 bg-amber-500 text-white text-center py-2 rounded-xl font-bold ">{activity.title}</a>
         </div>
         {/each}
     
