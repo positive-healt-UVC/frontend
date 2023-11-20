@@ -2,9 +2,6 @@
 	"/": [],
 	"/activities": [],
 	"/activities/addActivity": [],
-	"/activities/[activityId]": [
-		"src/routes/activities/[activityId]/+page.js"
-	],
 	"/example": [
 		"src/routes/example/+page.js",
 		"src/routes/example/+page.server.js"

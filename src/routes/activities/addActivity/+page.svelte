@@ -8,7 +8,7 @@
 </script>
 
     <div class="container mx-auto min-h-screen flex flex-col items-center">
-        <h1 class="m-5 text-2xl font-bold mb-4 pt-6">Activiteit toevoegen</h1>
+        <h1 class="m-5 text-2xl font-bold mb-4 py-4 border-b-2">Activiteit toevoegen</h1>
         
         <form on:submit|preventDefault={addActivity} class="max-w-md mx-auto bg-white p-8 rounded-xl">
             <div class="mb-4">
