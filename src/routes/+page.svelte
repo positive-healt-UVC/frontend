@@ -11,7 +11,7 @@
   
     <div>
       <div class="grid grid-cols-1 gap-4 mb-5 mx-5">
-        <a href="/" class="w-30 flex items-center text-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white button-color hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+        <a href="agenda" class="w-30 flex items-center text-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white button-color hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
           Geplande activiteiten
         </a>
       </div>
@@ -36,7 +36,7 @@
       }
   
       .button-color {
-        background-color: #0C9EFF ;
+        background-color: #FF9D00 ;
       }
     </style>
   
