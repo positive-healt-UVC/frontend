@@ -1,6 +1,8 @@
 <script>
   export let href;
   export let text;
+  export let image;
+  export let style;
 </script>
 
 <div>
@@ -14,6 +16,9 @@
           text-white 
           button-color 
           md:py-4 md:text-lg md:px-10">
+          {#if image}
+            <i class={image} style={style}></i>
+          {/if}
           {text}
     </a>
   </div>
