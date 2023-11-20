@@ -30,10 +30,7 @@
                 maar ook een gevoel van vrijheid, ontspanning en sociale integratie bevordert. 
                 Ongeacht de aard van de beperking biedt het water een unieke omgeving waarin mensen met verschillende handicaps kunnen genieten van beweging, 
                 oefening en plezier.
-                Zwemmen voor gehandicapten is een inclusieve en verrijkende activiteit die niet alleen fysieke voordelen biedt, 
-                maar ook een gevoel van vrijheid, ontspanning en sociale integratie bevordert. 
-                Ongeacht de aard van de beperking biedt het water een unieke omgeving waarin mensen met verschillende handicaps kunnen genieten van beweging, 
-                oefening en plezier.</p>
+            </p>
         </div>
     </div>
     </div> 
