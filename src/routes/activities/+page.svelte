@@ -1,6 +1,5 @@
 <script>
     import { activities } from '../../stores/activities';
-    import Activity from '$lib/components/activities/Activity.svelte';
 </script>
 
     <div class="min-h-screen flex flex-col items-center">
