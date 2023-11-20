@@ -6,18 +6,16 @@
 <div class="min-h-screen bg-sky flex flex-col items-center">
     <div class="h-2"></div> <!-- Create space at the top -->
     <img class="w-40 h-100" src=".//imgs/AbilityLink_Logo.png" alt="AbilityLinkLogo">
-  
     <div class="h-20 mt-8 space-y-6"> 
         <Buttons 
         text={"Activiteit aanmaken"} 
         href={"/example"}>
         </Buttons>
-
+      
         <Buttons 
         text={"Geplande activiteiten"} 
         href={"/example"}>
         </Buttons>
-
         <Buttons 
         text={"Groepen"} 
         href={"/example"}>
