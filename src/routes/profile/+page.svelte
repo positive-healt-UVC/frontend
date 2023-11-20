@@ -1,6 +1,11 @@
 <script>
   import Buttons from "$lib/components/Buttons.svelte";
+    import FormInput from "$lib/components/FormInput.svelte";
   import UpcomingActivity from "$lib/components/UpcomingActivity.svelte";
+    import { text } from "@sveltejs/kit";
+    function toggleSelection(option) {
+            option.selected = !option.selected;
+        }
 </script>
 
 <div class="min-h-screen bg-sky flex flex-col items-center">
@@ -15,17 +20,29 @@
   <div class="h-40 mt-8 space-y-6">
     <form action="/profile" class="flex flex-col">
       <div class="flex flex-col mb-4">
-        <label for="fname" class="mb-1 text-center">Voornaam</label>
-        <input type="text" id="fname" class="w-40 mt-1 resize-none mb-2 p-2 border border-gray-300 rounded"/>
+        <FormInput 
+        label={"fname"}
+        labeling={"Voornaam"}
+        type={"text"}
+        ></FormInput>
         
-        <label for="lname" class="mb-1 text-center">Achternaam</label>
-        <input type="text" id="lname" class="w-40 mt-1 resize-none mb-2 p-2 border border-gray-300 rounded"/>
+        <FormInput 
+        label={"lname"}
+        labeling={"Achternaam"}
+        type={"text"}
+        ></FormInput>
         
-        <label for="geboortedatum" class="mb-1 text-center">Geboortedatum</label>
-        <input type="date" id="geboortedatum" class="w-40 mt-1 resize-none mb-2 p-2 border border-gray-300 rounded"/>
-        
-        <label for="handicaps" class="mb-1 text-center">Handicaps</label>
-        <input type="text" id="handicaps" class="w-40 mt-1 resize-none mb-2 p-2 border border-gray-300 rounded"/>
+        <FormInput 
+        label={"geboortedatum"}
+        labeling={"Geboortedatum"}
+        type={"date"}
+        ></FormInput>
+
+        <FormInput 
+        label={"handicaps"}
+        labeling={"Handicaps"}
+        type={"text"}
+        ></FormInput>
       </div>
       
       <!-- Submit button outside the flex container -->
@@ -37,7 +54,8 @@
       text-white 
       button-color 
       md:py-4 md:text-lg md:px-10 
-      hover:bg-blue-500 hover:text-white transition">
+      hover:bg-blue-500 hover:text-white transition
+      bottom">
     </form>
   </div>
 
