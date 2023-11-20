@@ -1,0 +1,27 @@
+version: '3'
+
+networks:
+  abilityLink_backend:
+
+services:
+  node:
+    image: node:latest
+    volumes:
+      - .:/app
+      - ./node_modules/:/app/node_modules
+    working_dir: /app
+    command: bash -c "npm install && npm audit fix && npm run build"
+
+  vite:
+    image: node:current-alpine
+    depends_on: 
+      node:
+        condition: service_completed_successfully
+    working_dir: /app
+    ports:
+      - 5173:5173
+    networks:
+      - abilityLink_backend
+    volumes:
+      - .:/app
+    entrypoint: npm run dev -- --host 0.0.0.0
