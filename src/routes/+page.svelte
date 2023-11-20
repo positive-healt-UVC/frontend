@@ -14,7 +14,7 @@
       
         <Buttons 
         text={"Geplande activiteiten"} 
-        href={"/example"}>
+        href={"/agenda"}>
         </Buttons>
         <Buttons 
         text={"Groepen"} 

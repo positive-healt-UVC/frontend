@@ -14,7 +14,7 @@
         <div class="mt-5 pb-3">
             <div class="ml-5">
             <p class="font-bold">De Aanloop 1, 4335 AT Middelburg</p>
-            <p class="mt-5 font-bold">Groeps nummer: <a href="groups">1</a></p>
+            <p class="mt-5 font-bold">Groepsnummer: <a href="groups">1</a></p>
             <p class="font-bold">Start tijd:</p>
             <p class="font-bold">Eind tijd:</p>
             <div>
@@ -24,9 +24,13 @@
                 <i class="fa-solid fa-wheelchair fa-lg ml-2" style="color: #000000;"></i>
             </div>
         </div>
-        <div class="button-color rounded-md w-11/12 ml-3">
-            <p class="mt-5 font-bold ml-2 text-white">Beschrijving:</p>
+        <div class="button-color rounded-md w-11/12 ml-3 mb-20 pb-5 mt-5">
+            <p class="mt-5 font-bold ml-2 text-white pt-2">Beschrijving:</p>
             <p class="mt-2 ml-2 mr-2 text-white">Zwemmen voor gehandicapten is een inclusieve en verrijkende activiteit die niet alleen fysieke voordelen biedt, 
+                maar ook een gevoel van vrijheid, ontspanning en sociale integratie bevordert. 
+                Ongeacht de aard van de beperking biedt het water een unieke omgeving waarin mensen met verschillende handicaps kunnen genieten van beweging, 
+                oefening en plezier.
+                Zwemmen voor gehandicapten is een inclusieve en verrijkende activiteit die niet alleen fysieke voordelen biedt, 
                 maar ook een gevoel van vrijheid, ontspanning en sociale integratie bevordert. 
                 Ongeacht de aard van de beperking biedt het water een unieke omgeving waarin mensen met verschillende handicaps kunnen genieten van beweging, 
                 oefening en plezier.</p>
