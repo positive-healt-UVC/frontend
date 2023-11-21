@@ -19,7 +19,7 @@
 
         <Buttons 
         text={"Groepen"} 
-        href={"/example"}>
+        href={"/groups"}>
         </Buttons>
     </div>
 
