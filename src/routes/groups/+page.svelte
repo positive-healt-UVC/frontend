@@ -1,11 +1,9 @@
 <script>
   import BackButton from "$lib/components/BackButton.svelte";
-  import Buttons from "$lib/components/Buttons.svelte";
   import Group from "$lib/components/Group.svelte";
-  import UpcomingActivity from "$lib/components/UpcomingActivity.svelte";
 </script>
 
-<BackButton href={"/"}></BackButton>
+<BackButton></BackButton>
 
 <div class="min-h-screen bg-sky flex flex-col items-center">
   <div class="h-2" />

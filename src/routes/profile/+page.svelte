@@ -3,7 +3,7 @@
     import BackButton from "$lib/components/BackButton.svelte";
 </script>
 
-<BackButton href={"/"}></BackButton>
+<BackButton></BackButton>
 
 <div class="min-h-screen bg-sky flex flex-col items-center">
   <div class="h-2" />
