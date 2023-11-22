@@ -3,7 +3,7 @@
 	import "../app.css";
 </script>
 
-<div class="flex flex-col h-screen justify-between">
+<div class="flex flex-col h-screen bg-sky justify-between">
 	<main>
 		<slot />
 		
