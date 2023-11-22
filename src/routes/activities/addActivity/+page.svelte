@@ -3,7 +3,6 @@
     let activityData = { id: '', tiltle: '', time: '' };
 
     const addActivity = () => {
-    //TODO
 };
 </script>
 

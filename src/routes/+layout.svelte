@@ -1,8 +1,7 @@
 <script>
+	import BackButton from "$lib/components/BackButton.svelte";
 	import "../app.css";
 </script>
-
-
 
 <div class="flex flex-col h-screen justify-between">
 	<main>
