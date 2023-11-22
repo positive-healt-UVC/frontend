@@ -9,7 +9,7 @@
     <div class="h-20 mt-8 space-y-6"> 
         <Buttons 
         text={"Activiteit aanmaken"} 
-        href={"/example"}>
+        href={"/addActivity"}>
         </Buttons>
       
         <Buttons 
