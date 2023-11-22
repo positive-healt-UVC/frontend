@@ -2,15 +2,10 @@
   import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
   import Buttons from "$lib/components/Buttons.svelte";
-
-  
-  // Stuur gebruiker terug naar de homepagina na 10 seconden
-  onMount(() => {
-    setTimeout(() => {
-      goto('/');
-    }, 20000);
-  });
+    import BackButton from '$lib/components/BackButton.svelte';
 </script>
+
+<BackButton></BackButton>
 
 <div class="min-h-screen bg-sky flex flex-col items-center text-center">
 
