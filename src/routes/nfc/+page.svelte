@@ -1,30 +1,14 @@
 <script>
   import BackButton from "$lib/components/BackButton.svelte";
   import Buttons from "$lib/components/Buttons.svelte";
+  import NfcProvider from "$lib/providers/NfcProvider";
 
-  async function readNfc() {
-    const logThing = document.getElementById('log');
-    logThing.innerHTML = "Scanning...";
-
-    try {
-      const ndef = new NDEFReader();
-      await ndef.scan();
-
-      ndef.addEventListener("readingerror", () => {
-        logThing.innerHTML = "Argh! Cannot read data from the NFC tag. Try another one?";
-      });
-
-      ndef.addEventListener("reading", ({ message, serialNumber }) => {
-        logThing.innerHTML = `> Serial Number: ${serialNumber}`;
-        logThing.innerHTML = `> Records: (${message.records.length})`;
-      });
-    } catch (error) {
-      logThing.innerHTML = "Argh! " + error;
-    }
+  async function ReadNfc() {
+    await NfcProvider('log');
   }
 </script>
 
-<BackButton href={"/"} />
+<BackButton />
 
 <div>
   <div class="min-h-screen bg-sky flex flex-col items-center">
@@ -36,7 +20,7 @@
       alt="AbilityLinkLogo"
     />
 
-    <div class="h-20 mt-8 space-y-6" on:click={readNfc}>
+    <div class="h-20 mt-8 space-y-6" on:click={ReadNfc}>
       <Buttons
         text={"Horloge Scannen"}
         href={"#"}
