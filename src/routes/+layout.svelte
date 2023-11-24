@@ -5,6 +5,7 @@
 
 <div class="flex flex-col h-screen justify-between">
 	<main>
+		<a href="/login">Login</a>
 		<slot />
 		
 	</main>
