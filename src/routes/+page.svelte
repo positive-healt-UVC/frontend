@@ -2,7 +2,10 @@
     import Buttons from "$lib/components/Buttons.svelte";
     import UpcomingActivity from "$lib/components/UpcomingActivity.svelte";
 </script>
-<div class="min-h-screen bg-sky flex flex-col items-center">
+<div class="min-h-screen flex flex-col items-center bg-sky">
+  <div class="mt-5 mr-80">
+		<a href="/login"><i class="fa-solid fa-right-to-bracket fa-2xl float-left" style="color: #000000;"></i></a>
+	</div>
   <div class="h-2"></div> <!-- Create space at the top -->
     <img class="w-40 h-100" src=".//imgs/AbilityLink_Logo.png" alt="AbilityLinkLogo">
 
@@ -27,6 +30,7 @@
       <UpcomingActivity></UpcomingActivity>
   </div>
 </div>
+
 
     <style>
       .bg-sky {

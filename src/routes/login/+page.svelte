@@ -1,5 +1,6 @@
-<!-- Login.svelte -->
 <script>
+  import Buttons from "$lib/components/Buttons.svelte";
+  import UpcomingActivity from "$lib/components/UpcomingActivity.svelte";
   import BackButton from "$lib/components/BackButton.svelte";
 
   let username = "";
@@ -13,8 +14,14 @@
   };
 </script>
 
-<div class="flex flex-col h-screen justify-between bg-sky">
-  <main class="p-4">
+<div class="min-h-screen flex flex-col items-center bg-sky">
+  <div class="mr-96">
+  <BackButton></BackButton>
+  </div>
+<div class="h-2"></div> <!-- Create space at the top -->
+  <img class="w-40 h-100" src=".//imgs/AbilityLink_Logo.png" alt="AbilityLinkLogo">
+
+  <div class="h-20 mt-8 space-y-6"> 
     <form on:submit|preventDefault={handleLogin} class="space-y-4">
       <label class="block text-black">
         <span>Username:</span>
@@ -36,20 +43,26 @@
         />
       </label>
 
-      <button type="submit" class="bg-blue-500 text-white p-2 rounded">
-        Login
-      </button>
+      <button
+      type="submit"
+      class="w-full button-color text-white px-4 py-2 rounded-xl hover:bg-green-400"
+  >
+      Activiteit aanmaken
+  </button>
     </form>
-  </main>
-
-  <footer class="text-center bg-gradient-to-t from-white via-cyan-400 to-cyan-500 text-white p-4">
-    <!-- Your footer links -->
-  </footer>
+  </div>
 </div>
 
-<style>
-  .bg-sky {
-    background-image: url(".//imgs/BG_Light_Blue.png");
-    background-position: center;
-  }
-</style>
+
+  <style>
+    .bg-sky {
+      background-image: url(".//imgs/BG_Light_Blue.png");
+      background-position: center;
+    }
+
+    .button-color {
+        background-color: #FF9D00 ;
+      }
+  </style>
+
+
