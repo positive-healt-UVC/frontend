@@ -77,9 +77,18 @@
 
     <button
       type="submit"
-      class="w-full bg-gray-500 text-white px-4 py-2 rounded-xl hover:bg-green-400"
-    >
+      class="w-full bg-gray-500 text-white px-4 py-2 rounded-xl hover:bg-green-400">
       Activiteit aanmaken
     </button>
   </form>
 </div>
+
+    <style>
+        .bg-sky {
+          background-image: url(".//imgs/BG_Light_Blue.png");
+          background-position: center;
+        }
+        .button-color {
+            background-color: #ff9d00;
+        }
+      </style>

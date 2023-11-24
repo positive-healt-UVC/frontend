@@ -8,7 +8,7 @@
 
 <div class="bg-sky">
   <div class="min-h-screen flex flex-col items-center">
-    <div class="w-5/6">
+    <div class="w-5/6 mt-2">
       <WeekNumber />
     </div>
     <div class="w-5/6 rounded-md">

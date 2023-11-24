@@ -3,7 +3,7 @@
   import Buttons from "$lib/components/Buttons.svelte";
 </script>
 
-<BackButton href={"/"}></BackButton>
+<BackButton></BackButton>
 
 <div>
   <div class="min-h-screen bg-sky flex flex-col items-center">
@@ -15,21 +15,21 @@
     <div class="h-20 mt-8 space-y-6"> 
         <Buttons 
         text={"Notificaties"} 
-        href={"notificaties"}
+        href={"settings/notificaties"}
         image={"pr-2 l-2 fa-solid fa-bell-slash fa-shake fa-xl"}
         style={"color: #000000"}>
         </Buttons>
 
         <Buttons 
         text={"Terms and Services"} 
-        href={"terms"}
+        href={"settings/terms"}
         image={"pr-2 l-2 fa-solid fa-file-alt fa-xl"}
         style={"color: #000000"}>
         </Buttons>
 
         <Buttons 
         text={"Toegankelijkheid"} 
-        href={"toegankelijkheid"}
+        href={"settings/toegankelijkheid"}
         image={"pr-2 l-2 fa-solid fa-circle-half-stroke"}
         style={"color: #000000"}>
         </Buttons>
