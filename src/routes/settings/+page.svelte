@@ -15,7 +15,7 @@
     <div class="h-20 mt-8 space-y-6"> 
         <Buttons 
         text={"Notificaties"} 
-        href={"notificaties"}
+        href={"settings/notificaties"}
         image={"pr-2 l-2 fa-solid fa-bell-slash fa-shake fa-xl"}
         style={"color: #000000"}>
         </Buttons>
