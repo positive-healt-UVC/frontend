@@ -1,7 +1,10 @@
 <script>
   import Agenda from "$lib/components/Agenda.svelte";
+  import BackButton from "$lib/components/BackButton.svelte";
   import WeekNumber from "$lib/components/WeekNumber.svelte";
 </script>
+
+<BackButton></BackButton>
 
 <div class="bg-sky">
   <div class="min-h-screen flex flex-col items-center">
