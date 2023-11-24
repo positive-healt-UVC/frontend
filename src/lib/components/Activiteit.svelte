@@ -1,1 +1,1 @@
-<p>begintijd: {begintijd}</p>
+<!-- <p>begintijd: {begintijd}</p> -->
