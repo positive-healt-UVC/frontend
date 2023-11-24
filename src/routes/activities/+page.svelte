@@ -1,5 +1,6 @@
 <script>
-    import { activities } from '../../stores/activities';
+    import Activiteit from '$lib/components/Activiteit.svelte';
+import { activities } from '../../stores/activities';
 </script>
 
     <div class="min-h-screen flex flex-col items-center">
@@ -11,5 +12,5 @@
         </div>
         {/each}
     
-        <a href="/activities/addActivity" class="block text-blue-500 hover:underline mt-4">Add Activity</a>
+        <a href="/activities/addActivity" class="block text-blue-500 hover:underline mt-4">Add Activity </a>
     </div>
