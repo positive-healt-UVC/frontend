@@ -29,7 +29,7 @@
 
         <Buttons 
         text={"Toegankelijkheid"} 
-        href={"toegankelijkheid"}
+        href={"settings/toegankelijkheid"}
         image={"pr-2 l-2 fa-solid fa-circle-half-stroke"}
         style={"color: #000000"}>
         </Buttons>
