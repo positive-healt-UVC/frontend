@@ -1,6 +1,6 @@
 <script>  
     async function getAllEvents() {
-        const res = await fetch(`http://localhost:3011/events`);
+        const res = await fetch(`http://localhost:3000/events/events`);
         const values = await res.json();
         return values;
     }

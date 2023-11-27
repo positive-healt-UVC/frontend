@@ -14,7 +14,7 @@
       };
       try {
         console.log(JSON.stringify(newEventData));
-        const response = await fetch("http://localhost:3010/events", {
+        const response = await fetch("http://localhost:3000/events/events", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -24,7 +24,7 @@
   
         if (response.ok) {
                 console.log("Event data successfully added");
-              goto("../agenda");
+              // goto("../agenda");
             } else {
                 console.error("Failed to add Event data");
             }
