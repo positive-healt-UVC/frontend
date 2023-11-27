@@ -33,9 +33,14 @@
         image={"pr-2 l-2 fa-solid fa-circle-half-stroke"}
         style={"color: #000000"}>
         </Buttons>
+
+        <Buttons 
+        text={"Inloggen"} 
+        href={"/login"}
+        image={"pr-2 l-2 fa-solid fa-right-to-bracket"}
+        style={"color: #000000"}>
+        </Buttons>
     </div>
-  
-  
 </div>
 </div>
 
