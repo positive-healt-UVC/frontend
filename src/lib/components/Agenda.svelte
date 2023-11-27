@@ -16,11 +16,11 @@
         <div class="button-color rounded-md h-32">
         <h1 class="text-center text-lg mt-2 mb-1 text-white">{event.name}</h1>
         <div class="text-sm text-white ml-2">
-            <p>Begin tijd: 12:00</p>
-            <p>Eind tijd: 13:00</p>
+            <p>Begin tijd: {event.startingTime}</p>
+            <p>Eind tijd: {event.endingTime}</p>
             <p class="mt-2">{event.location}</p>
         </div>
-        <p class="text-xs text-sky-600 float-right mb-1 mr-5"><a href="activiteit"><button>More ></button></a></p>
+        <p class="text-xs text-sky-600 float-right mb-1 mr-5"><a href="activiteit"><button>More></button></a></p>
     </div>
     {/each}
     {:catch error}

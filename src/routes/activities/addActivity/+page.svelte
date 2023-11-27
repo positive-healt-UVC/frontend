@@ -1,17 +1,19 @@
 <script>
-    import { activities } from "../../../stores/activities.js";
+  import { goto } from "$app/navigation";
   
-    let activityData = { title: "", time: "", description: "", location: "" };
+  let activityData = { name: "", description: "", date: "", startingTime: "", endingTime: "", location: ""};
   
     const addEvent = async () => {
       const newEventData = {
-        name: activityData.title,
-        date: activityData.time,
+        name: activityData.name,
+        description: activityData.description,
+        date: activityData.date,
+        startingTime: activityData.startingTime,
+        endingTime: activityData.endingTime,
         location: activityData.location,
       };
       try {
         console.log(JSON.stringify(newEventData));
-        console.log('hello world!');
         const response = await fetch("http://localhost:3010/events", {
           method: "POST",
           headers: {
@@ -21,10 +23,11 @@
         });
   
         if (response.ok) {
-          console.log("Event data successfully added");
-        } else {
-          console.error("Failed to add Event data");
-        }
+                console.log("Event data successfully added");
+              goto("../agenda");
+            } else {
+                console.error("Failed to add Event data");
+            }
       } catch (error) {
         console.error("Error:", error instanceof Error ? error.message : error);
       }
@@ -46,7 +49,7 @@
         id="activityName"
         type="text"
         class="w-full px-4 py-2 border rounded-xl focus:border-gray-500"
-        bind:value={activityData.title}
+        bind:value={activityData.name}
       />
     </div>
 
@@ -64,31 +67,62 @@
 
     <div class="mb-4">
       <label
-        for="activityTime"
-        class="block text-gray-700 text-sm font-bold mb-2">Tijd:</label
+        for="activityDate"
+        class="block text-gray-700 text-sm font-bold mb-2">datum:</label
       >
       <input
-        id="activityTime"
+        id="activityDate"
         type="datetime-local"
         class="w-full px-4 py-2 border rounded-xl focus:border-gray-500"
-        bind:value={activityData.time}
+        bind:value={activityData.date}
       />
     </div>
 
-    <button
+    <div class="mb-4">
+      <label
+        for="activityStartingTime"
+        class="block text-gray-700 text-sm font-bold mb-2">begintijd:</label
+      >
+      <input
+        id="activityStartingTime"
+        type="time"
+        class="w-full px-4 py-2 border rounded-xl focus:border-gray-500"
+        bind:value={activityData.startingTime}
+      />
+    </div>
+
+    <div class="mb-4">
+      <label
+        for="activityEndingTime"
+        class="block text-gray-700 text-sm font-bold mb-2">Eindtijd:</label
+      >
+      <input
+        id="activityEndingTime"
+        type="time"
+        class="w-full px-4 py-2 border rounded-xl focus:border-gray-500"
+        bind:value={activityData.endingTime}
+      />
+    </div>
+
+    <div class="mb-4">
+      <label
+        for="activityLocation"
+        class="block text-gray-700 text-sm font-bold mb-2">locatie:</label
+      >
+      <input
+        id="activityLocation"
+        type="text"
+        class="w-full px-4 py-2 border rounded-xl focus:border-gray-500"
+        bind:value={activityData.location}
+      />
+    </div>
+    <div class="mb-20">
+      <button
       type="submit"
       class="w-full bg-gray-500 text-white px-4 py-2 rounded-xl hover:bg-green-400">
       Activiteit aanmaken
     </button>
+    </div>
   </form>
 </div>
 
-    <style>
-        .bg-sky {
-          background-image: url(".//imgs/BG_Light_Blue.png");
-          background-position: center;
-        }
-        .button-color {
-            background-color: #ff9d00;
-        }
-      </style>
