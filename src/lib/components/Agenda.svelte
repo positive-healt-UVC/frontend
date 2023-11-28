@@ -19,6 +19,7 @@
     {:then events}
     {#each events as event}
         <div class="button-color rounded-2xl">
+            <a href="/activities/{event.id}">
             <h1 class="text-center mt-2 mb-1">{event.name}</h1>
             <div class="text-white ml-2">
                 <p>Begin tijd: {event.startingTime}</p>
@@ -29,7 +30,8 @@
                     year: "numeric"
                 })}</p>
             </div>
-            <p class="text-xs text-sky-600 float-right mb-1 mr-5"><a href="activiteit"><button>Details</button></a></p>
+            <p class="text-xs text-sky-600 float-right mb-1 mr-5"><a href="/activities/{event.id}"><button>Details</button></a></p>
+        </a>
         </div>
     {/each}
     {:catch error}

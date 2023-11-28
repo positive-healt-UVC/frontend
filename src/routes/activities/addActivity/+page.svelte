@@ -18,27 +18,27 @@
 
     // Basic validation example, you can add more complex validation rules
     if (!activityData.name) {
-      errors.name = "Name is required";
+      errors.name = "Naam is verplicht";
     }
 
     if (!activityData.description) {
-      errors.description = "Description is required";
+      errors.description = "Beschrijving is verplicht";
     }
 
     if (!activityData.date) {
-      errors.date = "Date is required";
+      errors.date = "Datum is verplicht";
     }
 
     if (!activityData.startingTime) {
-      errors.startingTime = "Starting time is required";
+      errors.startingTime = "Starttijd is verplicht";
     }
 
     if (!activityData.endingTime) {
-      errors.endingTime = "Ending time is required";
+      errors.endingTime = "Eindtijd is verplicht";
     }
 
     if (!activityData.location) {
-      errors.location = "Location is required";
+      errors.location = "Locatie is verplicht";
     }
 
     return Object.keys(errors).length === 0;
