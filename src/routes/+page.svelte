@@ -6,7 +6,7 @@
   <div class="h-2"></div> <!-- Create space at the top -->
     <img class="w-40 h-100" src=".//imgs/AbilityLink_Logo.png" alt="AbilityLinkLogo">
 
-    <div class="h-20 mt-8 space-y-6"> 
+    <div class="h-20 mt-8 space-y-6 mb-12"> 
         <Buttons 
         text={"Activiteit aanmaken"} 
         href={"/activities/addActivity"}>
@@ -23,9 +23,10 @@
         </Buttons>
     </div>
 
-    <div class="mt-48 space-y-6">
+    <div class="m-20">
       <UpcomingActivity></UpcomingActivity>
-  </div>
+    </div>
+
 </div>
 
     <style>
