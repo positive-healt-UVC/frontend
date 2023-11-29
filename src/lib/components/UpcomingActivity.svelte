@@ -14,26 +14,23 @@
   })();
 </script>
 
-<div class="sm:mt-12 lg:m-20">
-  <div >
-    <i class="fa-solid fa-calendar-days fa-2xl inline ml-3 mb-5 "></i>
-    <h1 class="inline">Geplande activiteiten</h1>
+<div class="sm:mt-10 lg:m-10">
+  <div class="mt-3 mb-3">
+    <i class="fa-solid fa-calendar-days fa-2xl inline ml-3 mb-5 mt-20 "></i>
+    <h1 class="inline mt-10">Komende Activiteiten</h1>
   </div>
 
   <div class="button-container">
     {#if events.length > 0}
       {#each events as event (event.id)}
-        <div class="button-item rounded-2xl">
-          <div>
-            <h1 class="text-center mt-2 mb-1">{event.name}</h1>
-            <p>Van: {event.startingTime}</p>
-            <p>Tot {event.endingTime}</p>
-          </div>
-          <p>
-            <a href="activiteit">
-              <button>Details</button>
-            </a>
-          </p>
+        <div class="button-item m-1">
+          <a href="activities/{event.id}">
+            <div>
+              <h1 class="text-center">{event.name}</h1>
+              <p>Van: {event.startingTime}</p>
+              <p>Tot: {event.endingTime}</p>
+            </div>
+          </a>
         </div>
       {/each}
     {:else}
@@ -57,8 +54,8 @@
         border: none;
         border-radius: 10px;
         padding: 10px;
-        margin: 10px;
-        width: 40%;
+        width: 100%;
+        height: 60%;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     }
 
