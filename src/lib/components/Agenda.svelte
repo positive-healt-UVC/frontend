@@ -1,28 +1,25 @@
 <script>
 function getCurrentDayNumber() {
     const currentDate = new Date();
-    const startOfYear = new Date(currentDate.getFullYear(), 0, 1); // January 1st of the current year
-    const millisecondsInDay = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
+    const startOfYear = new Date(currentDate.getFullYear(), 0, 1);
+    const millisecondsInDay = 24 * 60 * 60 * 1000;
 
-    // Calculate the difference in days
     const diffInMilliseconds = currentDate - startOfYear;
     const diffInDays = Math.floor(diffInMilliseconds / millisecondsInDay) + 1;
 
     return diffInDays;
   }
 
-  function getDate() {
-    const dayNumber = getCurrentDayNumber() + 1;
+  function getDate(day) {
+    const dayNumber = day + 1;
     const date = new Date(2023, 0);
     date.setDate(dayNumber);
     return date.toISOString().split("T")[0];
   }
 
-
   function changeWeek(value) {
     dayNumber += value;
     eventsPromises = getAllEvents();
-    alert('test');
   }
 
   async function getAllEvents() {
@@ -39,17 +36,28 @@ function getCurrentDayNumber() {
 
 <div class="button-container">
   <div class="weekbutton-color rounded-2xl h-16" id="weekSelector">
-    <div class="w-1/6 h-3/4 bg-white" on:click={() => changeWeek(1)}></div>
-    {getDate()}
-    {getCurrentDayNumber()}
+    <div class="w-1/6 h-3/4 bg-white mt-2 float-left rounded-xl text-center pt-1" on:click={() => changeWeek(-7)}>
+      <i class="fa-solid fa-angle-left"></i>
+    </div>
+    <div class="w-2/3 h-3/4 mt-2 float-left rounded-xl text-center font-medium pt-1">
+      {new Date(getDate(dayNumber)).toLocaleDateString("en-US", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })}
+    </div>
+    <div class="w-1/6 h-3/4 bg-white float-right mt-2 float-left rounded-xl text-center pt-1" on:click={() => changeWeek(7)}>
+      <i class="fa-solid fa-angle-left fa-rotate-180"></i>
+    </div>
   </div>
+
   {#await eventsPromises}
     <li>...waiting</li>
   {:then events}
     {#each events as event, index}
       {#if index === 0 || event.date !== events[index - 1].date}
-        <div class="bg-gray-200 h-12 w-4/5 mt-10 rounded-2xl" id="weekSelector">
-          Datum: {new Date(event.date).toLocaleDateString("en-US", {
+        <div class="h-12 w-4/5 mt-10 rounded-2xl text-center pt-3" style="background-color: #ffcc80;" id="weekSelector">
+          {new Date(event.date).toLocaleDateString("en-US", {
             day: "numeric",
             month: "long",
             year: "numeric",
@@ -57,18 +65,11 @@ function getCurrentDayNumber() {
         </div>
       {/if}
       <div class="button-color rounded-2xl">
-        <h1 class="text-center mt-2 mb-1">{event.name}</h1>
+        <h1 class="text-center mb-1">{event.name}</h1>
         <div class="text-white ml-2">
           <p>Begin tijd: {event.startingTime}</p>
           <p>Eind tijd: {event.endingTime}</p>
           <p>Locatie: {event.location}</p>
-          <!-- <p class="mt-2">
-            Datum: {new Date(event.date).toLocaleDateString("en-US", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            })}
-          </p> -->
         </div>
         <p class="text-xs text-sky-600 float-right mb-1 mr-5">
           <a href="activiteit"><button>Details</button></a>
