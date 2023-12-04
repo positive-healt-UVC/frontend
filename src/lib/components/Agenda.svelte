@@ -1,34 +1,33 @@
 <script>
-function getCurrentDayNumber() {
-    const currentDate = new Date();
-    const startOfYear = new Date(currentDate.getFullYear(), 0, 1);
-    const millisecondsInDay = 24 * 60 * 60 * 1000;
 
-    const diffInMilliseconds = currentDate - startOfYear;
-    const diffInDays = Math.floor(diffInMilliseconds / millisecondsInDay) + 1;
+function getDate(offset) {
+    const today = new Date();
+    const currentDay = today.getDate() + 1;
+    const currentMonth = today.getMonth() + 1;
+    const currentYear = today.getFullYear();
 
-    return diffInDays;
+    const targetDate = new Date(currentYear, currentMonth - 1, currentDay + offset);
+    const formattedDate = targetDate.toISOString().split('T')[0];
+
+    return formattedDate;
   }
 
-  function getDate(day) {
-    const dayNumber = day + 1;
-    const date = new Date(2023, 0);
-    date.setDate(dayNumber);
-    return date.toISOString().split("T")[0];
-  }
-
-  function changeWeek(value) {
-    dayNumber += value;
+  async function changeDate(value) {
+    changedDate += value;
+    date = getDate(changedDate);
+    console.log(getDate(0))
     eventsPromises = getAllEvents();
   }
 
   async function getAllEvents() {
-    const res = await fetch(`http://localhost:3000/events/events/day/${dayNumber}`);
+    const res = await fetch(`http://localhost:3000/events/events/day/${date}`);
     const values = await res.json();
     return values;
   }
 
-  let dayNumber = getCurrentDayNumber();
+  // let dayNumber = getCurrentDayNumber();
+  let date = getDate(0);
+  let changedDate = 0;
   let eventsPromises = getAllEvents();
 </script>
 
@@ -36,17 +35,17 @@ function getCurrentDayNumber() {
 
 <div class="button-container">
   <div class="weekbutton-color rounded-2xl h-16" id="weekSelector">
-    <div class="w-1/6 h-3/4 bg-white mt-2 float-left rounded-xl text-center pt-1" on:click={() => changeWeek(-7)}>
+    <div class="w-1/6 h-3/4 bg-white mt-2 float-left rounded-xl text-center pt-1" on:click={() => changeDate(-7)}>
       <i class="fa-solid fa-angle-left"></i>
-    </div>
+    </div> 
     <div class="w-2/3 h-3/4 mt-2 float-left rounded-xl text-center font-medium pt-1">
-      {new Date(getDate(dayNumber)).toLocaleDateString("en-US", {
+      {new Date(getDate(changedDate)).toLocaleDateString("en-US", {
         day: "numeric",
         month: "long",
         year: "numeric",
       })}
     </div>
-    <div class="w-1/6 h-3/4 bg-white float-right mt-2 float-left rounded-xl text-center pt-1" on:click={() => changeWeek(7)}>
+    <div class="w-1/6 h-3/4 bg-white float-right mt-2 float-left rounded-xl text-center pt-1" on:click={() => changeDate(7)}>
       <i class="fa-solid fa-angle-left fa-rotate-180"></i>
     </div>
   </div>
