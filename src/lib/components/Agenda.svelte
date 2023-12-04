@@ -1,5 +1,4 @@
 <script>
-
 function getDate(offset) {
     const today = new Date();
     const currentDay = today.getDate() + 1;
@@ -25,7 +24,6 @@ function getDate(offset) {
     return values;
   }
 
-  // let dayNumber = getCurrentDayNumber();
   let date = getDate(0);
   let changedDate = 0;
   let eventsPromises = getAllEvents();
