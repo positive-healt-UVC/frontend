@@ -1,95 +1,146 @@
-<script>  
-    async function getAllEvents() {
-        const res = await fetch(`http://localhost:3000/events/events/`);
-        const values = await res.json();
-        return values;
-    }
+<script>
+function getCurrentDayNumber() {
+    const currentDate = new Date();
+    const startOfYear = new Date(currentDate.getFullYear(), 0, 1);
+    const millisecondsInDay = 24 * 60 * 60 * 1000;
 
-    let eventsPromises = getAllEvents();
+    const diffInMilliseconds = currentDate - startOfYear;
+    const diffInDays = Math.floor(diffInMilliseconds / millisecondsInDay) + 1;
+
+    return diffInDays;
+  }
+
+  function getDate(day) {
+    const dayNumber = day + 1;
+    const date = new Date(2023, 0);
+    date.setDate(dayNumber);
+    return date.toISOString().split("T")[0];
+  }
+
+  function changeWeek(value) {
+    dayNumber += value;
+    eventsPromises = getAllEvents();
+  }
+
+  async function getAllEvents() {
+    const res = await fetch(`http://localhost:3000/events/events/day/${dayNumber}`);
+    const values = await res.json();
+    return values;
+  }
+
+  let dayNumber = getCurrentDayNumber();
+  let eventsPromises = getAllEvents();
 </script>
 
-<h1 class="text-2xl font-bold border-b-2 mt-0">
-    Geplande Activiteiten
-  </h1>
+<h1 class="text-2xl font-bold border-b-2 mt-0">Geplande Activiteiten</h1>
 
+<div class="button-container">
+  <div class="weekbutton-color rounded-2xl h-16" id="weekSelector">
+    <div class="w-1/6 h-3/4 bg-white mt-2 float-left rounded-xl text-center pt-1" on:click={() => changeWeek(-7)}>
+      <i class="fa-solid fa-angle-left"></i>
+    </div>
+    <div class="w-2/3 h-3/4 mt-2 float-left rounded-xl text-center font-medium pt-1">
+      {new Date(getDate(dayNumber)).toLocaleDateString("en-US", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })}
+    </div>
+    <div class="w-1/6 h-3/4 bg-white float-right mt-2 float-left rounded-xl text-center pt-1" on:click={() => changeWeek(7)}>
+      <i class="fa-solid fa-angle-left fa-rotate-180"></i>
+    </div>
+  </div>
 
-  <div class="button-container">
-    {#await eventsPromises}
+  {#await eventsPromises}
     <li>...waiting</li>
-    {:then events}
-    {#each events as event}
-        <div class="button-color rounded-2xl">
-            <a href="/activities/{event.id}">
-            <h1 class="text-center mt-2 mb-1">{event.name}</h1>
-            <div class="text-white ml-2">
-                <p>Begin tijd: {event.startingTime}</p>
-                <p>Eind tijd: {event.endingTime}</p>
-                <p class="mt-2">Datum: {new Date(event.date).toLocaleDateString("en-US", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric"
-                })}</p>
-            </div>
-            <p class="text-xs text-sky-600 float-right mb-1 mr-5"><a href="/activities/{event.id}"><button>Details</button></a></p>
-        </a>
+  {:then events}
+    {#each events as event, index}
+      {#if index === 0 || event.date !== events[index - 1].date}
+        <div class="h-12 w-4/5 mt-10 rounded-2xl text-center pt-3" style="background-color: #ffcc80;" id="weekSelector">
+          {new Date(event.date).toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
         </div>
+      {/if}
+      <div class="button-color rounded-2xl">
+        <h1 class="text-center mb-1">{event.name}</h1>
+        <div class="text-white ml-2">
+          <p>Begin tijd: {event.startingTime}</p>
+          <p>Eind tijd: {event.endingTime}</p>
+          <p>Locatie: {event.location}</p>
+        </div>
+        <p class="text-xs text-sky-600 float-right mb-1 mr-5">
+          <a href="activiteit"><button>Details</button></a>
+        </p>
+      </div>
     {/each}
-    {:catch error}
+  {:catch error}
     <li>Error: {error.message}</li>
-    {/await}
+  {/await}
 </div>
 
-
 <style>
-    .button-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
 
-    .button-color {
-        background-color: #FF9D00;
-        border: none;
-        border-radius: 10px;
-        padding: 10px;
-        margin: 10px;
-        width: 300%;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    }
+  .button-color {
+    background-color: #ff9d00;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    width: 300%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
 
-    .button-color:hover {
-        background-color: #FFB84D;
-        cursor: pointer;
-    }
+  .weekbutton-color {
+    background-color: #4f4f4f71;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    width: 300%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
 
-    .button-color h1 {
-        font-size: 18px;
-        color: #fff;
-        margin: 0;
-    }
+  .button-color:hover {
+    background-color: #ffb84d;
+    cursor: pointer;
+  }
 
-    .button-color p {
-        font-size: 14px;
-        color: #fff;
-        margin: 5px 0;
-    }
+  .button-color h1 {
+    font-size: 18px;
+    color: #fff;
+    margin: 0;
+  }
 
-    .button-color a {
-        text-decoration: none;
-    }
+  .button-color p {
+    font-size: 14px;
+    color: #fff;
+    margin: 5px 0;
+  }
 
-    .button-color button {
-        background-color: transparent;
-        border: 1px solid #fff;
-        color: #fff;
-        padding: 5px 10px;
-        border-radius: 5px;
-        font-size: 12px;
-        cursor: pointer;
-    }
+  .button-color a {
+    text-decoration: none;
+  }
 
-    .button-color button:hover {
-        background-color: #fff;
-        color: #FF9D00;
-    }
+  .button-color button {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .button-color button:hover {
+    background-color: #fff;
+    color: #ff9d00;
+  }
 </style>
