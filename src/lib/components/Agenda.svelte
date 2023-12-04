@@ -52,7 +52,7 @@ function getYearFromDate(dateString) {
       <i class="fa-solid fa-angle-left"></i>
     </div> 
     <div class="w-2/3 h-3/4 mt-2 float-left rounded-xl text-center font-medium pt-1">
-      Week {getWeekNumber(new Date(getDate(changedDate)))}, {getYearFromDate(new Date(getDate(changedDate)))}
+      Week {getWeekNumber((getDate(changedDate)))}, {getYearFromDate(getDate(changedDate))}
     </div>
     <div class="w-1/6 h-3/4 bg-white float-right mt-2 float-left rounded-xl text-center pt-1" on:click={() => changeDate(7)}>
       <i class="fa-solid fa-angle-left fa-rotate-180"></i>
