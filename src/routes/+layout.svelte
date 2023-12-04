@@ -3,6 +3,7 @@
 	import "../app.css";
 </script>
 
+
 <div class="flex flex-col h-screen bg-sky justify-between">
 	<main>
 		<slot />
@@ -27,5 +28,10 @@
   text-align: center;
 	border-top: 4px solid white;
 	background-color: #ff9e00;
+	}
+
+	.bg-sky {
+		background-image: url(".//imgs/BG_Light_Blue.png");
+		background-position: center;
 	}
 </style>
