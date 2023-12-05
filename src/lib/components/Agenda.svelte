@@ -14,7 +14,6 @@
   async function changeDate(value) {
     changedDate += value;
     date = getDate(changedDate);
-    console.log(getDate(0))
     eventsPromises = getAllEvents();
   }
 
@@ -34,7 +33,7 @@ function getYearFromDate(dateString) {
 }
 
   async function getAllEvents() {
-    const res = await fetch(`http://localhost:3000/events/events/day/${date}`);
+    const res = await fetch(`http://localhost:3000/events/events/date/${date}`);
     const values = await res.json();
     return values;
   }
