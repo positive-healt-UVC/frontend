@@ -6,18 +6,32 @@
       const res = await fetch(`http://localhost:3000/events/events/`);
       const values = await res.json();
       
-      values.sort((a, b) => new Date(a.date) - new Date(b.date));
-      events = values.slice(-2);
+      const currentDate = new Date();
+      currentDate.setHours(0, 0, 0, 0); // Set time to midnight
+
+      // Filter events that occur after the current date
+      const upcomingEvents = values.filter(event => {
+        const eventDate = new Date(event.date);
+        eventDate.setHours(0, 0, 0, 0); // Set time to midnight
+        return eventDate >= currentDate;
+      });
+
+      // Sort the upcoming events based on their date
+      upcomingEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      // Take the first two upcoming events
+      events = upcomingEvents.slice(0, 2);
     } catch (error) {
       console.error('Error fetching events:', error.message);
     }
   })();
 </script>
 
+
 <div class="sm:mt-10 lg:m-10">
-  <div class="mt-3 mb-3">
-    <i class="fa-solid fa-calendar-days fa-2xl inline ml-3 mb-5 mt-20 "></i>
-    <h1 class="inline mt-10">Komende Activiteiten</h1>
+  <div class="mt-3 mb-5 ml-11">
+    <i class="fa-solid fa-calendar-days fa-2xl inline"></i>
+    <h1 class="inline mt-10">Aankomende Activiteiten</h1>
   </div>
 
   <div class="button-container">
@@ -30,6 +44,14 @@
               <p>Van: {event.startingTime}</p>
               <p>Tot: {event.endingTime}</p>
             </div>
+            <div class="float-right -mt-14">
+              <p class="text-right">{event.location}</p>
+              <p>{new Date(event.date).toLocaleDateString("nl-NL", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}</p>
+            </div>
           </a>
         </div>
       {/each}
@@ -41,7 +63,7 @@
 
 <style>
   .activity-color {
-    background-color: #FFB84D ;
+    background-color: #674006 ;
   }
   .button-container {
         display: flex;
@@ -50,7 +72,7 @@
     }
 
     .button-item {
-        background-color: #FF9D00;
+        background-color: #ffcc80;
         border: none;
         border-radius: 10px;
         padding: 10px;
@@ -65,15 +87,16 @@
     }
 
     .button-item h1 {
-        font-size: 18px;
-        color: #fff;
-        margin: 0;
+      font-weight: bold;
+      font-size: 22px;
+      color: black;
+      margin: 0;
     }
 
     .button-item p {
-        font-size: 14px;
-        color: #fff;
-        margin: 5px 0;
+      font-size: 14px;
+      color: black;
+      margin: 5px 0;
     }
 
     .button-item a {
