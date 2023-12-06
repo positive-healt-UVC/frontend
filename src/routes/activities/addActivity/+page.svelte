@@ -33,7 +33,6 @@
 
     const fields = [
       { name: "name", label: "Naam is verplicht" },
-      { name: "description", label: "Beschrijving is verplicht" },
       { name: "date", label: "Datum is verplicht" },
       { name: "startingTime", label: "Starttijd is verplicht" },
       { name: "endingTime", label: "Eindtijd is verplicht" },
@@ -101,13 +100,16 @@
 </Modal>
 
 <div class="bg-sky container mx-auto min-h-screen flex flex-col items-center">
-  <h1 class="text-2xl font-bold py-4 border-b-2">
+  <h1 class="mt-10 text-2xl font-bold border-b-2 text-center mb-5">
     Activiteit toevoegen
   </h1>
+  <p class="text-xs text-center -mt-4">
+    * = verplicht
+
 
   <form on:submit|preventDefault={addEvent} class="max-w-md mx-auto p-2 rounded-xl">
     <div class="mb-4">
-      <label for="activityName" class="block text-gray-700 text-sm font-bold mb-2">Naam:</label>
+      <label for="activityName" class="block text-gray-700 text-sm font-bold mb-2">Naam Activiteit: *</label>
       <input id="activityName" type="text" class="w-full px-4 py-2 border rounded-xl focus:border-gray-500" bind:value={activityData.name} />
       {#if errors.name}<p class="text-red-500 text-sm mt-1">{errors.name}</p>{/if}
     </div>
@@ -119,31 +121,31 @@
     </div>
 
     <div class="mb-4">
-      <label for="activityDate" class="block text-gray-700 text-sm font-bold mb-2">Datum:</label>
+      <label for="activityDate" class="block text-gray-700 text-sm font-bold mb-2">Datum: *</label>
       <input id="activityDate" type="date" class="w-full px-4 py-2 border rounded-xl focus:border-gray-500" bind:value={activityData.date} />
       {#if errors.date}<p class="text-red-500 text-sm mt-1">{errors.date}</p>{/if}
     </div>
 
     <div class="mb-4">
-      <label for="activityStartingTime" class="block text-gray-700 text-sm font-bold mb-2">Begintijd:</label>
+      <label for="activityStartingTime" class="block text-gray-700 text-sm font-bold mb-2">Begintijd: *</label>
       <input id="activityStartingTime" type="time" class="w-full px-4 py-2 border rounded-xl focus:border-gray-500" bind:value={activityData.startingTime} />
       {#if errors.startingTime}<p class="text-red-500 text-sm mt-1">{errors.startingTime}</p>{/if}
     </div>
 
     <div class="mb-4">
-      <label for="activityEndingTime" class="block text-gray-700 text-sm font-bold mb-2">Eindtijd:</label>
+      <label for="activityEndingTime" class="block text-gray-700 text-sm font-bold mb-2">Eindtijd: *</label>
       <input id="activityEndingTime" type="time" class="w-full px-4 py-2 border rounded-xl focus:border-gray-500" bind:value={activityData.endingTime} />
       {#if errors.endingTime}<p class="text-red-500 text-sm mt-1">{errors.endingTime}</p>{/if}
     </div>
 
     <div class="mb-4">
-      <label for="activityLocation" class="block text-gray-700 text-sm font-bold mb-2">Locatie:</label>
+      <label for="activityLocation" class="block text-gray-700 text-sm font-bold mb-2">Locatie: *</label>
       <input id="activityLocation" type="text" class="w-full px-4 py-2 border rounded-xl focus:border-gray-500" bind:value={activityData.location} />
       {#if errors.location}<p class="text-red-500 text-sm mt-1">{errors.location}</p>{/if}
     </div>
 
     <div>
-      <button type="submit" class="w-30 flex items-center text-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white button-color md:py-4 md:text-lg md:px-10">Activiteit aanmaken</button>
+      <button type="submit" class="w-30 flex items-center text-center justify-center px-8 py-3 text-base font-medium rounded-xl text-white button-color mb-20">Activiteit aanmaken</button>
     </div>
   </form>
 </div>
