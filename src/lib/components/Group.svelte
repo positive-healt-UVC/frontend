@@ -1,39 +1,78 @@
 <script>
-  export let href;
-  export let title;
-  export let group;
-  export let groups = [];
+  async function getAllGroups() {
+    const res = await fetch("http://localhost:3000/groups/groups/");
+    const values = await res.json();
+    return values 
+  }
+
+  let groupsPromises = getAllGroups();
 </script>
 
-<div>
-  <div class="grid grid-cols-1 gap-4 mb-5 mx-5">
-    <a href = {href}
-      class="w-30 flex items-center text-center
-          justify-center px-8 py-3
-          border border-transparent
-          text-base font-medium
-          rounded-xl
-          text-white
-          button-color
-          md:py-4 md:text-lg md:px-10"
-    >
-      <ul>
-        {group}
+{#await groupsPromises}
+  <li>...Waiting</li>
+{:then groups} 
+  {#each groups as group}
+  <div class="button-color rounded-2xl">
+    <a href="groups/{group.id}">
+    <h1 class="text-center mb-1">{group.name}</h1>
+    <div class="text-white ml-2">
+      <p>Begeleiders: {group.carer}</p>
+      <p></p>
+    </div>
+    <p class="text-xs text-sky-600 float-right mb-1 mr-5">
+      <a href="groups/{group.id}"><button>Details</button></a>
+    </p>
     </a>
   </div>
-</div>
+  {/each}
+  {:catch error}
+  <li>Error: {error.message}</li>
+{/await}
 
 <style>
-  .bg-sky {
-    background-image: url(".//imgs/BG_Light_Blue.png");
-    background-position: center;
-  }
 
   .button-color {
     background-color: #ff9d00;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    width: 100%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .button-color h1 {
+    font-weight: bold;
+    font-size: 22px;
+    color: black;
+    margin: 0;
   }
 
-  .button-color:hover {
-    background-color: #00b0d1;
+  
+  .button-color p {
+    font-size: 14px;
+    color: black;
+    margin: 5px 0;
+  }
+
+
+  .button-color a {
+    text-decoration: none;
+  }
+
+
+  .button-color button {
+    background-color: transparent;
+    border: 1px solid black;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .button-color button:hover {
+    background-color: #fff;
+    color: #000000;
   }
 </style>

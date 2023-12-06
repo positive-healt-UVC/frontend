@@ -17,19 +17,15 @@
 
   <div class="h-20 mt-8 space-y-6">
     <div class="mb-20">
-    <Group href = {"/groups/1"} group={"Groep1"} />
-
-    <Group href = {"/groups/2"} group={"Groep2"} />
-
-    <Group href = {"/groups/3"} group={"Groep3"} />
+    <Group />
     </div>
 
     <div class="mt-10">
       <Buttons 
         text={"Groep aanmaken"} 
-        href={"/groups/addGroup"}
+        href={"./groups/addGroup"}
         image={""}
-        style={"color: #000000"}>
+        style={""}>
       </Buttons>
     </div>
   </div>
