@@ -12,7 +12,7 @@
 
     <img class="w-40 h-100" src=".//imgs/AbilityLink_Logo.png" alt="AbilityLinkLogo">
 
-    <div class="h-20 mt-8 space-y-6"> 
+    <div class="h-20 w-80 mt-8 space-y-6 mb-12"> 
         <Buttons 
         text={"Notificaties"} 
         href={"settings/notificaties"}
