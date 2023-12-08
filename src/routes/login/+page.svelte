@@ -47,8 +47,11 @@
         goto("../home");
       } else {
         // Handle other cases if needed
+        // For example, display a message for invalid credentials
+        alert("Ongeldige inloggegevens. Controleer uw gebruikersnaam en wachtwoord.");
       }
     } else {
+      // Handle the case where the server response is not okay (e.g., 404 or 500)
       console.error("Failed to log in. Please check your credentials.");
     }
   } catch (error) {

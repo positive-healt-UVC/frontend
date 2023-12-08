@@ -1,7 +1,7 @@
 <script>
   import { goto } from "$app/navigation";
 
-let userData = { username: "", password: "", age: "", handicap: "" };
+let userData = { username: "", password: "", age: "", phoneNum: "", handicap: "" };
 let errors = {};
 
 const validateForm = () => {
@@ -17,6 +17,10 @@ const validateForm = () => {
 
   if (!userData.age) {
     errors.age = "Dit veld is verplicht";
+  }
+
+  if(!userData.phoneNum) {
+    errors.phoneNum = "Dit veld is verplicht";
   }
 
   if (!userData.handicap) {
@@ -35,6 +39,7 @@ const addUser = async () => {
     name: userData.username,
     password: userData.password,
     age: userData.age,
+    phoneNum: userData.phoneNum,
     handicap: userData.handicap,
   };
 
@@ -83,6 +88,11 @@ const addUser = async () => {
     <input id="age" type="number" class="w-full px-4 py-2 border rounded-xl focus:border-gray-500" bind:value={userData.age} />
     {#if errors.age}<p class="text-red-500 text-sm mt-1">{errors.age}</p>{/if}
   </div>
+
+  <div class="mb-4">
+    <label for="phoneNum" class="block text-gray-700 text-sm font-bold mb-2">Telefoonnummer:</label>
+    <input id="phoneNum" type="text" class="w-full px-4 py-2 border rounded-xl focus:border-gray-500" bind:value={userData.phoneNum} />
+    {#if errors.phoneNum}<p class="text-red-500 text-sm mt-1">{errors.phoneNum}</p>{/if}
 
   <div class="mb-4">
     <label for="handicap" class="block text-gray-700 text-sm font-bold mb-2">Handicap:</label>
