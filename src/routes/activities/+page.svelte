@@ -1,5 +1,5 @@
 <script>
-    import Activiteit from '$lib/components/Activiteit.svelte';
+    // import Activiteit from '$lib/components/Activiteit.svelte';
     import { activities } from '../../stores/activities';
 </script>
 
