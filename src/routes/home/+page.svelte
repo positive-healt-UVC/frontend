@@ -1,6 +1,11 @@
 <script>
   import Buttons from "$lib/components/Buttons.svelte";
   import UpcomingActivity from "$lib/components/UpcomingActivity.svelte";
+  import idStore from '../../stores/idStore';
+
+// Use the $ syntax to subscribe to the store
+  let currentId = $idStore;
+  console.log(currentId)
 </script>
 
 <div class="min-h-screen bg-sky flex flex-col items-center">

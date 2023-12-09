@@ -1,5 +1,9 @@
 <script>
   import { goto } from "$app/navigation";
+  import idStore from "../../stores/idStore.js";
+  function setId(id) {
+    idStore.set(id);
+  }
 
   let userData = { username: "", password: "" };
   let errors = {};
@@ -19,45 +23,46 @@
   };
 
   const loginUser = async () => {
-  if (!validateForm()) {
-    return;
-  }
-
-  const userCredentials = {
-    username: userData.username,
-    password: userData.password,
-  };
-
-  try {
-    const response = await fetch("http://localhost:3011/users/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userCredentials),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      console.log(data.message);
-
-      if (data.message === 'User logged in successfully') {
-        alert("U bent ingelogd.");
-        goto("../home");
-      } else {
-        // Handle other cases if needed
-        // For example, display a message for invalid credentials
-        alert("Ongeldige inloggegevens. Controleer uw gebruikersnaam en wachtwoord.");
-      }
-    } else {
-      // Handle the case where the server response is not okay (e.g., 404 or 500)
-      console.error("Failed to log in. Please check your credentials.");
+    if (!validateForm()) {
+      return;
     }
-  } catch (error) {
-    console.error("Error:", error instanceof Error ? error.message : error);
-  }
-};
+
+    const userCredentials = {
+      username: userData.username,
+      password: userData.password,
+    };
+
+    try {
+      const response = await fetch("http://localhost:3011/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userCredentials),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        if (data.message === "User logged in successfully") {
+          console.log(data.userId);
+          setId(data.userId);
+          alert("U bent ingelogd.");
+          goto("../home");
+        } else {
+          // Handle other cases if needed
+          // For example, display a message for invalid credentials
+          alert(
+            "Ongeldige inloggegevens. Controleer uw gebruikersnaam en wachtwoord."
+          );
+        }
+      } else {
+        // Handle the case where the server response is not okay (e.g., 404 or 500)
+        console.error("Failed to log in. Please check your credentials.");
+      }
+    } catch (error) {
+      console.error("Error:", error instanceof Error ? error.message : error);
+    }
+  };
 </script>
 
 <div class="container mx-auto min-h-screen flex flex-col items-center">
