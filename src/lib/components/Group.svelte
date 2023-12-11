@@ -17,9 +17,8 @@
     <h1 class="text-center mb-1">{group.name}</h1>
     <div class="text-white ml-2">
       <p>Begeleiders: {group.carer}</p>
-      <p></p>
     </div>
-    <p class="text-xs text-sky-600 float-right mb-1 mr-5">
+    <p class="text-xs text-sky-600 float-right mb-10 mr-5 details-button">
       <a href="groups/{group.id}"><button>Details</button></a>
     </p>
     </a>
@@ -74,5 +73,10 @@
   .button-color button:hover {
     background-color: #fff;
     color: #000000;
+  }
+
+  .details-button {
+    position: relative;
+    bottom: 1.75vh;
   }
 </style>

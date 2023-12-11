@@ -13,8 +13,10 @@
   <div class="w-5/6 rounded-md">
     <div class="grid grid-cols-1 gap-4 w-5/6 mt-10 mx-auto mb-20">
       <GroupDetails></GroupDetails>
-      <UpcomingActivity></UpcomingActivity>
     </div>
+  </div>
+  <div class="mx-20 w-80">
+    <UpcomingActivity></UpcomingActivity>
   </div>
 </div>
 </div>
