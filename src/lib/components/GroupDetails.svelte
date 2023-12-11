@@ -57,7 +57,6 @@
       flex-wrap: wrap;
       justify-content: space-around;
   }
-
   .event-grid {
       background-color: #FF9D00;
       border: none;
@@ -67,38 +66,16 @@
       width: 300%;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
-
   .event-grid h1 {
       font-size: 18px;
       color: #fff;
       margin: 0;
   }
-
   .event-grid p {
       font-size: 14px;
       color: #fff;
       margin: 5px 0;
   }
-
-  .event-grid a {
-      text-decoration: none;
-  }
-
-  .event-grid button {
-      background-color: transparent;
-      border: 1px solid #fff;
-      color: #fff;
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-size: 12px;
-      cursor: pointer;
-  }
-
-  .event-grid button:hover {
-      background-color: #fff;
-      color: #FF9D00;
-  }
-
   .error-message {
       color: #ff0000;
   }

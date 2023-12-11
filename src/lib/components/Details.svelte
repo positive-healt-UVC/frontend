@@ -103,26 +103,6 @@
       color: #fff;
       margin: 5px 0;
   }
-
-  .event-grid a {
-      text-decoration: none;
-  }
-
-  .event-grid button {
-      background-color: transparent;
-      border: 1px solid #fff;
-      color: #fff;
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-size: 12px;
-      cursor: pointer;
-  }
-
-  .event-grid button:hover {
-      background-color: #fff;
-      color: #FF9D00;
-  }
-
   .error-message {
       color: #ff0000;
   }

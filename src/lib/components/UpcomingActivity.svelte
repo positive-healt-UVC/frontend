@@ -62,9 +62,6 @@
 </div>
 
 <style>
-  .activity-color {
-    background-color: #674006 ;
-  }
   .button-container {
         display: flex;
         flex-wrap: wrap;
@@ -101,20 +98,5 @@
 
     .button-item a {
         text-decoration: none;
-    }
-
-    .button-item button {
-        background-color: transparent;
-        border: 1px solid #fff;
-        color: #fff;
-        padding: 5px 10px;
-        border-radius: 5px;
-        font-size: 12px;
-        cursor: pointer;
-    }
-
-    .button-item button:hover {
-        background-color: #fff;
-        color: #FF9D00;
     }
 </style>
