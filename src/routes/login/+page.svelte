@@ -44,7 +44,6 @@
       const data = await response.json();
       if (response.ok) {
         if (data.message === "User logged in successfully") {
-          console.log(data.userId);
           setId(data.userId);
           alert("U bent ingelogd.");
           goto("../home");
