@@ -1,5 +1,5 @@
 <script>
-    import Buttons from "./Buttons.svelte";
+    import { goto } from '$app/navigation';
 
   let webId = null;
 
@@ -15,6 +15,28 @@
   }
 
   let loadingEvent = getAllEvents();
+
+  async function deleteEvent(eventId) {
+    try {
+      const response = await fetch(`http://localhost:3000/events/events/${eventId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        // update the agenda UI
+        loadingEvent = getAllEvents();
+        goto('/agenda');
+
+      } else {
+        console.error('Failed to delete Event data');
+      }
+    } catch (error) {
+      console.error('Error:', error instanceof Error ? error.message : error);
+    }
+  }
 </script>
 
 <div class="button-container">
@@ -57,6 +79,16 @@
   {:catch error}
     <p class="error-message">Error: {error.message}</p>
   {/await}
+
+  <div class="flex w-max m-4">
+    <form on:submit|preventDefault={() => deleteEvent(webId)}>
+        <button type="submit" class="flex text-center justify-center px-8 py-3 rounded-xl text-white button-color mb-5 bg-red-900 ml-7">Delete</button>
+    </form>
+    <a href="{webId}/edit" class="ml-4">
+        <button class="flex text-center justify-center px-8 py-3 rounded-xl text-white button-color bg-blue-500 w-4/5">Aanpassen</button>
+    </a>
+  </div>
+    
 </div>
 
 <div class="flex justify-center items-center">
