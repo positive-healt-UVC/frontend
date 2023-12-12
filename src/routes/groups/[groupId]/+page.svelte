@@ -1,13 +1,13 @@
 <script>
   import BackButton from "$lib/components/BackButton.svelte";
-
+  import { fly } from "svelte/transition";
   import {page} from '$app/stores';
   const groupId = $page.params.groupId;
 </script>
 
 <BackButton href={"/groups"}></BackButton>
 
-
+<body transition:fly={{ y: 300, duration: 300 }}>
 <div class="bg-sky">
   <div class="min-h-screen flex flex-col items-center">
     <div class="w-5/6 rounded-md mt-10">
@@ -33,6 +33,7 @@
       </div>
     </div>
   </div>
+</body>
 
 <style>
   .bg-sky {

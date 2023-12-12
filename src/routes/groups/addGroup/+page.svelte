@@ -1,6 +1,6 @@
 <script>
     import BackButton from "$lib/components/BackButton.svelte";
-
+    import { fly } from "svelte/transition";
     let groepData = { id: '', begeleider: '', deelnemers: '', telefoonNummer: '' };
 
     const addActivity = () => {
@@ -8,6 +8,8 @@
 </script>
 
 <BackButton></BackButton>
+
+<body transition:fly={{ y: 300, duration: 300 }}>
 
     <div class="container mx-auto min-h-screen flex flex-col items-center bg-sky">
         <h1 class="m-5 text-2xl font-bold mb-4 py-4 border-b-2">Groep toevoegen</h1>
@@ -60,3 +62,5 @@
             background-color: #ff9d00;
         }
       </style>
+
+</body>

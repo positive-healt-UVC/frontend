@@ -1,6 +1,6 @@
 <script>
     import BackButton from "$lib/components/BackButton.svelte";
-
+    import { fly } from "svelte/transition";
   let emailNotifications = true;
   let pushNotifications = true;
   let soundNotifications = true;
@@ -10,6 +10,8 @@
 </script>
 
 <BackButton></BackButton>
+
+<body transition:fly={{ y: 300, duration: 300 }}>
 
 <div class="bg-sky min-h-screen flex flex-col items-center">
   <div class="h-2"></div> <!-- Create space at the top -->
@@ -41,6 +43,8 @@
     <span>Geluids notificaties</span>
   </div>
 </div>
+
+</body>
 
 <style>
   h1 {

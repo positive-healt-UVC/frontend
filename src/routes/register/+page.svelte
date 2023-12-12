@@ -1,8 +1,21 @@
 <script>
   import { goto } from "$app/navigation";
+  import BackButton from "$lib/components/BackButton.svelte";
+  import { fly } from "svelte/transition";
+  import RegisterModal from "$lib/components/RegisterModal.svelte";
 
 let userData = { username: "", password: "", age: "", phoneNum: "", handicap: "" };
 let errors = {};
+let showModal = false;
+
+  function openModal() {
+    showModal = true;
+  }
+
+  function handleModalClick() {
+    goto("../login");
+  }
+
 
 const validateForm = () => {
   errors = {};
@@ -54,8 +67,7 @@ const addUser = async () => {
 
     if (response.ok) {
       console.log("Successfully registered");
-      alert("Account aangemaakt! U kunt nu inloggen.")
-      goto("../");
+      openModal();
     } else {
       console.error("Failed to register...");
     }
@@ -64,6 +76,15 @@ const addUser = async () => {
   }
 };
 </script>
+
+<BackButton />
+
+<RegisterModal bind:show={showModal}>
+  <p>U bent succesvol geregistreerd.</p>
+  <button class="mt-4 w-30 flex items-center text-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-black button-color md:py-4 md:text-lg md:px-10" on:click={handleModalClick}>Log nu in.</button>
+</RegisterModal>
+
+<body transition:fly={{ y: 300, duration: 300 }}>
 
 <div class="container mx-auto min-h-screen flex flex-col items-center">
 <h1 class="m-5 text-2xl font-bold mb-4 py-4 border-b-2">
@@ -105,6 +126,8 @@ const addUser = async () => {
   </button>
 </form>
 </div>
+
+</body>
 
 <style>
 .bg-sky {
