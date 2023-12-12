@@ -101,7 +101,6 @@
     .button-item a {
         text-decoration: none;
     }
-
     .button-item button {
         background-color: transparent;
         border: 1px solid #fff;
