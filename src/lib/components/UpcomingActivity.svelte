@@ -56,7 +56,9 @@
         </div>
       {/each}
     {:else}
-      <li>No events available</li>
+    <div class="button-error text-center text-white" id="weekSelector">
+      Geen aankomende activiteiten gevonden.
+    </div>    
     {/if}
   </div>
 </div>
@@ -98,5 +100,29 @@
 
     .button-item a {
         text-decoration: none;
+    }
+    .button-item button {
+        background-color: transparent;
+        border: 1px solid #fff;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+
+    .button-item button:hover {
+        background-color: #fff;
+        color: #FF9D00;
+    }
+
+    .button-error {
+      background-color: rgb(255, 0, 0);
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 10px;
+      width: 100%;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     }
 </style>
