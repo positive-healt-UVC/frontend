@@ -1,5 +1,6 @@
 <script>
     import { goto } from '$app/navigation';
+    import DeleteButton from '$lib/components/DeleteButton.svelte';
 
   let webId = null;
 
@@ -15,28 +16,6 @@
   }
 
   let loadingEvent = getAllEvents();
-
-  async function deleteEvent(eventId) {
-    try {
-      const response = await fetch(`http://localhost:3000/events/events/${eventId}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (response.ok) {
-        // update the agenda UI
-        loadingEvent = getAllEvents();
-        goto('/agenda');
-
-      } else {
-        console.error('Failed to delete Event data');
-      }
-    } catch (error) {
-      console.error('Error:', error instanceof Error ? error.message : error);
-    }
-  }
 </script>
 
 <div class="button-container">
@@ -81,9 +60,7 @@
   {/await}
 
   <div class="flex w-max m-4">
-    <form on:submit|preventDefault={() => deleteEvent(webId)}>
-        <button type="submit" class="flex text-center justify-center px-8 py-3 rounded-xl text-white button-color mb-5 bg-red-900 ml-7">Delete</button>
-    </form>
+    <DeleteButton eventId={webId} />
     <a href="{webId}/edit" class="ml-4">
         <button class="flex text-center justify-center px-8 py-3 rounded-xl text-white button-color bg-blue-500 w-4/5">Aanpassen</button>
     </a>
