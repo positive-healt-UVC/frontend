@@ -3,15 +3,15 @@
 	import "../app.css";
 	import idStore from "../stores/idStore";
 
-	// Use the $ syntax to subscribe to the store
-	let currentId = $idStore;
-	import { onMount } from "svelte";
-	onMount(() => {
-	 	let currentUrl = window.location.pathname;
-		if (currentUrl !== "/" && currentUrl !== "/login" && !currentId) {
-			window.location.replace('/')
-		}
-	});
+	// // Use the $ syntax to subscribe to the store
+	// let currentId = $idStore;
+	// import { onMount } from "svelte";
+	// onMount(() => {
+	//  	let currentUrl = window.location.pathname;
+	// 	if (currentUrl !== "/" && currentUrl !== "/login" && !currentId) {
+	// 		window.location.replace('/')
+	// 	}
+	// });
 </script>
 
 <div class="flex flex-col h-screen bg-sky justify-between">
