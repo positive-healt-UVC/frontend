@@ -2,9 +2,12 @@
     import FormInput from "$lib/components/FormInput.svelte";
     import BackButton from "$lib/components/BackButton.svelte";
     import { fly } from "svelte/transition";
+    import Logout from "$lib/components/Logout.svelte";
 </script>
 
 <BackButton></BackButton>
+
+<Logout/>
 
 <body transition:fly={{ y: 300, duration: 300 }}>
 
