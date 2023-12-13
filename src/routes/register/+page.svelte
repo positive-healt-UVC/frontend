@@ -100,7 +100,7 @@ const addUser = async () => {
 
   <div class="mb-4">
     <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Wachtwoord:</label>
-    <input id="password" class="w-full h-25 px-4 py-2 border rounded-xl focus:border-gray-500" bind:value={userData.password}>
+    <input id="password" type="password" class="w-full h-25 px-4 py-2 border rounded-xl focus:border-gray-500" bind:value={userData.password}>
     {#if errors.password}<p class="text-red-500 text-sm mt-1">{errors.password}</p>{/if}
   </div>
 
