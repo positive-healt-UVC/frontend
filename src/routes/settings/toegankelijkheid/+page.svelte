@@ -1,6 +1,7 @@
 <script>
   import BackButton from "$lib/components/BackButton.svelte";
   import Buttons from "$lib/components/Buttons.svelte";
+  import { fly } from "svelte/transition";
 
           let darkMode = false;
 
@@ -13,6 +14,8 @@
 </script>
 
 <BackButton></BackButton>
+
+<body transition:fly={{ y: 300, duration: 300 }}>
 
 <div class="bg-sky ">
   <div class="min-h-screen flex flex-col items-center">
@@ -42,6 +45,8 @@
   
 </div>
 </div>
+
+</body>
 
 <style>
   .bg-sky {

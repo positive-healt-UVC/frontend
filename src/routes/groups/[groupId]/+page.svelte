@@ -2,7 +2,12 @@
   import BackButton from "$lib/components/BackButton.svelte";
   import UpcomingActivity from "$lib/components/UpcomingActivity.svelte";
   import GroupDetails from "$lib/components/GroupDetails.svelte";
+  import { fly } from "svelte/transition";
 </script>
+
+<BackButton href={"/groups"}></BackButton>
+
+<body transition:fly={{ y: 300, duration: 300 }}>
 
 <BackButton></BackButton>
 
@@ -20,3 +25,4 @@
   </div>
 </div>
 </div>
+</body>
