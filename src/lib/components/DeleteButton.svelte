@@ -31,6 +31,6 @@
   }
 </script>
 
-<button on:click={deleteEvent} class="flex text-center justify-center px-8 py-3 rounded-xl text-white button-color mb-5 bg-red-900 ml-7">Delete</button>
+<button on:click={deleteEvent} class="flex text-center justify-center px-4 py-3 rounded-xl text-white button-color mb-5 bg-red-900 ml-7">Verwijderen</button>
 
 <DeleteModal bind:show={showModal} on:confirm={confirmDelete} on:cancel={() => showModal = false} />
