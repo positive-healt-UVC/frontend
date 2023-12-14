@@ -94,7 +94,7 @@
   {/await}
 
   <div class="flex w-max m-4">
-    <DeleteButton eventId={webId} />
+    <DeleteButton entityRoute="http://localhost:3000/events/events" entityId={webId} gotoRoute = '/agenda' />
     <a href="{webId}/edit" class="ml-4">
         <button class="flex text-center justify-center px-8 py-3 rounded-xl text-white button-color bg-blue-500 w-4/5">Aanpassen</button>
     </a>
