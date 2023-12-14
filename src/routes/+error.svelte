@@ -11,7 +11,6 @@
 
   <img class="w-40 h-100 pb-10" src=".//imgs/AbilityLink_Logo.png" alt="AbilityLinkLogo">
 
-
   <h1>404 Error - Pagina niet gevonden.</h1>
   <p class="pb-5">Het lijkt erop dat de pagina die je zocht niet gevonden kon worden (fout 404).</p>
   <p class="pb-5">Geen zorgen! Je wordt automatisch binnen 20 seconden teruggeleid naar de homepagina.</p>
@@ -28,7 +27,6 @@
     <img class="w-40 h-100 pt-10" src=".//imgs/Warning.png" alt="WarningIcon">
   </div>
 </div>
-
 
 <style>
   h1 {

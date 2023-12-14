@@ -2,9 +2,12 @@
   import BackButton from "$lib/components/BackButton.svelte";
   import Buttons from "$lib/components/Buttons.svelte";
   import Group from "$lib/components/Group.svelte";
+  import { fly } from "svelte/transition";
 </script>
 
 <BackButton></BackButton>
+
+<body transition:fly={{ y: 300, duration: 300 }}>
 
 <div class="min-h-screen bg-sky flex flex-col items-center">
   <div class="h-2" />
@@ -30,6 +33,7 @@
   </div>
 </div>
 
+</body>
 
 <style>
   .bg-sky {

@@ -9,10 +9,6 @@
     showModal = true;
   }
 
-  function closeModal() {
-    showModal = false;
-  }
-
   function handleModalClick() {
     goto("../agenda");
   }

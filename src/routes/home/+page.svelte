@@ -1,7 +1,11 @@
 <script>
   import Buttons from "$lib/components/Buttons.svelte";
+  import Logout from "$lib/components/Logout.svelte";
   import UpcomingActivity from "$lib/components/UpcomingActivity.svelte";
+  import { fly } from "svelte/transition";
 </script>
+
+<body transition:fly={{ y: 300, duration: 300 }}>
 
 <div class="min-h-screen bg-sky flex flex-col items-center">
   <div class="h-2" />
@@ -31,3 +35,5 @@
     background-position: center;
   }
 </style>
+
+</body>

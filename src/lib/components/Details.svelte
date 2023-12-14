@@ -1,6 +1,8 @@
 <script>
     import Buttons from "./Buttons.svelte";
     import Group from "./Group.svelte";
+    import { goto } from '$app/navigation';
+    import DeleteButton from '$lib/components/DeleteButton.svelte';
 
   let webId = null;
 
@@ -90,6 +92,14 @@
   {:catch error}
     <p class="error-message">Error: {error.message}</p>
   {/await}
+
+  <div class="flex w-max m-4">
+    <DeleteButton eventId={webId} />
+    <a href="{webId}/edit" class="ml-4">
+        <button class="flex text-center justify-center px-8 py-3 rounded-xl text-white button-color bg-blue-500 w-4/5">Aanpassen</button>
+    </a>
+  </div>
+    
 </div>
 
 <div class="flex justify-center items-center">
