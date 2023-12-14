@@ -43,7 +43,12 @@
 
       <div class="event-grid">
         <h1><strong>Deelnemers:</strong></h1>
-          <p>{group.members[0].name}</p>
+        {#each group.members as member (member.id)}
+        <div class="member-container">
+          <p><strong>{member.name}</strong></p>
+          <p>{member.phoneNum}</p>
+      </div>
+        {/each}
       </div>
   {:catch error}
     <p class="error-message">Error: {error.message}</p>
@@ -61,7 +66,7 @@
       background-color: #FF9D00;
       border: none;
       border-radius: 10px;
-      padding: 10px;
+      padding: 20px;
       margin: 10px;
       width: 300%;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -79,4 +84,8 @@
   .error-message {
       color: #ff0000;
   }
+  .member-container {
+        display: flex;
+        justify-content: space-between;
+    }
 </style>
