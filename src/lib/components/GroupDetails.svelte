@@ -1,6 +1,7 @@
 <script>
     import Buttons from "./Buttons.svelte";
     import UpcomingActivity from "./UpcomingActivity.svelte";
+    import DeleteButton from '$lib/components/DeleteButton.svelte';
 
     let webId = null;
     if (typeof window !== 'undefined') {
@@ -48,8 +49,14 @@
   {:catch error}
     <p class="error-message">Error: {error.message}</p>
   {/await}
-</div>
 
+  <div class="flex w-max m-4">
+    <DeleteButton entityRoute="http://localhost:3000/groups/groups" entityId={webId} gotoRoute = '/groups' />
+    <a href="{webId}/edit" class="ml-4">
+        <button class="flex text-center justify-center px-8 py-3 rounded-xl text-white button-color bg-blue-500 w-4/5">Aanpassen</button>
+    </a>
+  </div>
+</div>
 
 <style>
   .button-container {

@@ -16,7 +16,7 @@
 {#if show}
   <div class="modal">
     <div class="modal-content">
-      <p>Wil je dit event verwijderen?</p>
+      <p>Wil je dit item verwijderen?</p>
       <button class="confirm-button px-6 py-1 border rounded-xl text-white" on:click={confirm}>Ja</button>
       <button class="cancel-button px-6 py-1 border rounded-xl text-white m-2 bg-slate-500 " on:click={cancel}>Nee</button>
     </div>
