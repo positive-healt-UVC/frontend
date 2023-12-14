@@ -12,13 +12,13 @@
   <li>...Waiting</li>
 {:then groups} 
   {#each groups as group}
-  <div class="pb-10 button-color rounded-2xl">
+  <div class="button-color rounded-2xl">
     <a href="groups/{group.id}">
     <h1 class="text-center mb-1">{group.name}</h1>
     <div class="text-white ml-2">
       <p>Begeleiders: {group.carer}</p>
     </div>
-    <p class="text-xs text-sky-600 float-right mb-10 mr-5 details-button">
+    <p class="details-button text-sky-600">
       <a href="groups/{group.id}"><button>Details</button></a>
     </p>
     </a>
@@ -30,13 +30,15 @@
 
 <style>
 
-  .button-color {
+.button-color {
     background-color: #ff9d00;
     border: none;
     border-radius: 10px;
-    padding: 20px;
+    padding: 10px;
+    padding-bottom: 40px;
     margin: 10px;
-    width: 100%;
+    width: 120%;
+    margin-left: -25px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
   
@@ -76,7 +78,8 @@
   }
 
   .details-button {
-    position: relative;
-    bottom: 1.75vh;
+    margin-bottom: 10px;
+    font-size: x-small;
+    float: right;
   }
 </style>

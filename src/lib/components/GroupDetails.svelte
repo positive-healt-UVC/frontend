@@ -8,11 +8,11 @@
         webId = window.location.href.split('/').at(-1);
     }
     async function getGroup() {
-        const res = await fetch(`http://localhost:3000/groups/groups/${webId}`);
+        const res = await fetch(`http://localhost:3000/groups/groups/with-members/${webId}`);
         const values = await res.json();
+        console.log(values);
         return values 
     }
-
     let loadingEvent = getGroup();
 
 </script>
@@ -36,14 +36,14 @@
       <div class="event-grid">
         <h1><strong>Algemene informatie:</strong></h1>
         <div class="event-details">
+          <p><strong>Groeps nummer:</strong> {group.id}</p>
           <p><strong>Begeleider:</strong> {group.carer}</p>
-          <p><strong>Deelnemers:</strong> {group.id}</p>
         </div>
       </div>
 
       <div class="event-grid">
         <h1><strong>Deelnemers:</strong></h1>
-          <p>{group.id}</p>
+          <p>{group.members[0].name}</p>
       </div>
   {:catch error}
     <p class="error-message">Error: {error.message}</p>

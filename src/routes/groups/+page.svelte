@@ -18,8 +18,6 @@
   <div class="h-20 mt-8 space-y-6">
     <div class="mb-20">
     <Group />
-    </div>
-
     <div class="mt-10">
       <Buttons 
         text={"Groep aanmaken"} 
@@ -27,6 +25,7 @@
         image={""}
         style={""}>
       </Buttons>
+    </div>
     </div>
   </div>
 </div>
