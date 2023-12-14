@@ -8,11 +8,11 @@
         webId = window.location.href.split('/').at(-1);
     }
     async function getGroup() {
-        const res = await fetch(`http://localhost:3000/groups/groups/${webId}`);
+        const res = await fetch(`http://localhost:3000/groups/groups/with-members/${webId}`);
         const values = await res.json();
+        console.log(values);
         return values 
     }
-
     let loadingEvent = getGroup();
 
 </script>
@@ -36,14 +36,19 @@
       <div class="event-grid">
         <h1><strong>Algemene informatie:</strong></h1>
         <div class="event-details">
+          <p><strong>Groeps nummer:</strong> {group.id}</p>
           <p><strong>Begeleider:</strong> {group.carer}</p>
-          <p><strong>Deelnemers:</strong> {group.id}</p>
         </div>
       </div>
 
       <div class="event-grid">
         <h1><strong>Deelnemers:</strong></h1>
-          <p>{group.id}</p>
+        {#each group.members as member (member.id)}
+        <div class="member-container">
+          <p><strong>{member.name}</strong></p>
+          <p>{member.phoneNum}</p>
+      </div>
+        {/each}
       </div>
   {:catch error}
     <p class="error-message">Error: {error.message}</p>
@@ -61,7 +66,7 @@
       background-color: #FF9D00;
       border: none;
       border-radius: 10px;
-      padding: 10px;
+      padding: 20px;
       margin: 10px;
       width: 300%;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -79,4 +84,8 @@
   .error-message {
       color: #ff0000;
   }
+  .member-container {
+        display: flex;
+        justify-content: space-between;
+    }
 </style>
