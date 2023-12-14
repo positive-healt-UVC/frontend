@@ -1,4 +1,4 @@
-<!-- <script>
+<script>
     import { goto } from '$app/navigation';
     import { onMount } from 'svelte';
     import BackButton from '$lib/components/BackButton.svelte';
@@ -101,7 +101,7 @@
     };
   
     onMount(getGroupDetails);
-  </script> -->
+  </script>
 
   <script>
   import { goto } from '$app/navigation';
