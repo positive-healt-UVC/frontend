@@ -15,8 +15,5 @@
       <GroupDetails></GroupDetails>
     </div>
   </div>
-  <div class="mx-20 w-80">
-    <UpcomingActivity></UpcomingActivity>
-  </div>
 </div>
 </div>

@@ -13,7 +13,6 @@
     }
     changedDate += value;
     date = getDate(changedDate);
-    eventsPromises = getAllEvents();
   }
 
   async function getAllEvents() {

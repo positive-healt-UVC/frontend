@@ -20,7 +20,7 @@
 	</main>
 
 	<footer class="text-center">
-		<a href="/"><i class="fa-solid fa-house fa-2xl p-5 mb-2 mt-2" /></a>
+		<a href="/home"><i class="fa-solid fa-house fa-2xl p-5 mb-2 mt-2" /></a>
 		<i class="fa-brands fa-accessible-icon fa-2xl p-5 mb-2 mt-2" />
 		<a href="/profile"
 			><i class="fa-solid fa-user fa-2xl p-5 mb-2 mt-2" /></a

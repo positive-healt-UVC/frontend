@@ -12,7 +12,7 @@
   <li>...Waiting</li>
 {:then groups} 
   {#each groups as group}
-  <div class="button-color rounded-2xl">
+  <div class="pb-10 button-color rounded-2xl">
     <a href="groups/{group.id}">
     <h1 class="text-center mb-1">{group.name}</h1>
     <div class="text-white ml-2">
