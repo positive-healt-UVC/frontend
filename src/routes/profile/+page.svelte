@@ -1,9 +1,16 @@
 <script>
     import FormInput from "$lib/components/FormInput.svelte";
     import BackButton from "$lib/components/BackButton.svelte";
+    import { fly } from "svelte/transition";
+    import Logout from "$lib/components/Logout.svelte";
 </script>
 
 <BackButton></BackButton>
+
+<Logout/>
+
+<body transition:fly={{ y: 300, duration: 300 }}>
+
 
 <div class="min-h-screen bg-sky flex flex-col items-center">
   <div class="h-2" />
@@ -58,6 +65,8 @@
 
   <div class="mt-48 space-y-6" />
 </div>
+
+</body>
 
 <style>
   .bg-sky {
