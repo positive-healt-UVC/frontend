@@ -1,6 +1,6 @@
 <script>
   let date = getDate(0);
-  let year = 2023;
+  let year = new Date().getFullYear();
   let changedDate = 0;
   let eventsPromises = getAllEvents();
 
@@ -13,6 +13,7 @@
     }
     changedDate += value;
     date = getDate(changedDate);
+    eventsPromises = getAllEvents();
   }
 
   async function getAllEvents() {
