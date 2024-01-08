@@ -6,11 +6,11 @@
     if (typeof window !== 'undefined') {
         // If running in a browser environment
         webId = window.location.href.split('/').at(-1);
+        console.log(webId);
     }
     async function getGroup() {
         const res = await fetch(`http://localhost:3000/groups/groups/with-members/${webId}`);
         const values = await res.json();
-        console.log(values);
         return values 
     }
     let loadingEvent = getGroup();
