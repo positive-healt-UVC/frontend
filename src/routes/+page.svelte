@@ -4,9 +4,9 @@
 
   let currentIndex = 0;
   let text = [
-    { text: 'Ability Link transforms communication for individuals with disabilities, providing a user-friendly platform tailored to their needs.' },
-    { text: 'Ability Link revolutionizes communication for people with disabilities, offering an accessible and intuitive platform that empowers seamless interaction.' },
-    { text: 'Ability Link empowers individuals with disabilities by revolutionizing communication through its accessible and intuitive platform.' }
+    { text: 'Ability Link transformeert communicatie voor mensen met beperkingen en biedt een gebruiksvriendelijk platform dat is afgestemd op hun behoeften.' },
+    { text: 'Ability Link revolutioneert communicatie voor mensen met beperkingen en biedt een toegankelijk en intuïtief platform dat naadloze interactie mogelijk maakt.' },
+    { text: 'Ability Link geeft mensen met beperkingen de kracht door communicatie te revolutioneren met behulp van een toegankelijk en intuïtief platform.' }
   ];
 
   let feedbackUser = [

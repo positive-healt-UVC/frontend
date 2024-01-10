@@ -14,9 +14,9 @@
     {#each handicaps as handicap}
     <div class="button-color rounded-2xl">
       <a href="handicaps/{handicap.id}">
-      <h1 class="text-center mb-1">{handicap.name}</h1>
+      <h1 class="text-center pb-2">{handicap.name}</h1>
         <div class="w-2/4 mx-auto">
-        <img class="rounded-2xl" src="{handicap.imagePath}" alt="foto">
+        <img class="rounded-2xl mb-5" src="{handicap.imagePath}" alt="foto">
         </div>
         <div class="text-white ml-2">
             <p>{handicap.excerpt}</p>
