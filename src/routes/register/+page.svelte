@@ -3,6 +3,7 @@
   import BackButton from "$lib/components/BackButton.svelte";
   import { fly } from "svelte/transition";
   import RegisterModal from "$lib/components/RegisterModal.svelte";
+  import AudioHelp from "$lib/components/AudioHelp.svelte";
 
 let userData = { username: "", password: "", age: "", phoneNum: "", handicap: "" };
 let errors = {};
@@ -76,6 +77,9 @@ const addUser = async () => {
   }
 };
 </script>
+
+<AudioHelp audioFile={'.//mp3/Registreren.mp3'}/>
+
 
 <BackButton />
 
