@@ -16,12 +16,14 @@
     alt="AbilityLinkLogo"
   />
 
-  <div class="h-20 w-80 mt-8 space-y-6 mb-12">
+  <div class="h-20 w-80 mt-8 space-y-6 mb-28">
     <Buttons text={"Activiteit aanmaken"} href={"/activities/addActivity"} />
 
     <Buttons text={"Geplande activiteiten"} href={"/agenda"} />
 
     <Buttons text={"Groepen"} href={"/groups"} />
+
+    <Buttons text={"Handicaps"} href={"/handicaps"} />
   </div>
 
   <div class="m-20 w-80">
