@@ -29,7 +29,7 @@
 
 
 <div class="sm:mt-10 lg:m-10">
-  <div class="mt-3 mb-5 ml-11">
+  <div class="mt-5 mb-5 ml-11">
     <i class="fa-solid fa-calendar-days fa-2xl inline"></i>
     <h1 class="inline mt-10">Aankomende Activiteiten</h1>
   </div>
