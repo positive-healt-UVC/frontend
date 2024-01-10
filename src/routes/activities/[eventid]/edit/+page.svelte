@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
   import BackButton from '$lib/components/BackButton.svelte';
   import Modal from '$lib/components/Modal.svelte';
+  import GroupsDropdown from "$lib/components/GroupsDropdown.svelte";
 
 
   let showModal = false;
@@ -19,6 +20,20 @@
     }
   }
 
+  let groups = [];
+
+  // get all groups for the dropdown
+  async function fetchGroups() {
+    try {
+      const response = await fetch('http://localhost:3000/groups/groups/');
+      groups = await response.json();
+    } catch (error) {
+      console.error('Error fetching groups:', error);
+    }
+  }
+
+  fetchGroups();
+
   function openModal() {
     showModal = true;
   }
@@ -34,6 +49,7 @@
     startingTime: '',
     endingTime: '',
     location: '',
+    selectedGroup: null
   };
 
   let errors = {};
@@ -77,6 +93,7 @@
       startingTime: activityData.startingTime,
       endingTime: activityData.endingTime,
       location: activityData.location,
+      groupId: activityData.selectedGroup
     };
 
     try {
@@ -113,6 +130,7 @@
           startingTime: eventData.startingTime || '',
           endingTime: eventData.endingTime || '',
           location: eventData.location || '',
+          groupId: eventData.groupId || '',
         };
       } else {
         console.error('Failed to fetch Event data');
@@ -180,6 +198,11 @@
     <input id="activityLocation" type="text" class="w-full px-4 py-2 border rounded-xl focus:border-gray-500" bind:value={activityData.location} />
     {#if errors.location}<p class="text-red-500 text-sm mt-1">{errors.location}</p>{/if}
   </div>
+
+  <div class="mb-4">
+    <GroupsDropdown bind:groups={groups} bind:selectedGroup={activityData.selectedGroup} />
+  </div>
+
 
   <div>
     <button type="submit" class="w-30 flex items-center text-center justify-center px-8 py-3 text-base font-medium rounded-xl text-white button-color mb-20">Activiteit Aanpassen</button>
