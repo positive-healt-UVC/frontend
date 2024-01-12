@@ -5,6 +5,7 @@
   import { fly } from "svelte/transition";
   import LoginModal from "$lib/components/LoginModal.svelte";
   import Buttons from "$lib/components/Buttons.svelte";
+  import AudioHelp from "$lib/components/AudioHelp.svelte";
 
 
   let showModal = false;
@@ -81,6 +82,8 @@
     }
   };
 </script>
+
+<AudioHelp audioFile={'.//mp3/Login.mp3'}/>
 
 <BackButton />
 
