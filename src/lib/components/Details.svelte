@@ -11,7 +11,7 @@
     webId = window.location.href.split('/').at(-1);
   }
 
-  async function getAllEvents() {
+  async function getEvent() {
     const res = await fetch(`http://localhost:3000/events/events/${webId}`);
     const values = await res.json();
     return values;
@@ -23,21 +23,10 @@
     return values;
   }
 
-  let loadingEvent = getAllEvents();
+  let loadingEvent = getEvent();
   let groupsPromises = getAllGroups();
 
-    // Selected group state
     let selectedGroup = null;
-    let selectedGroupName = null;
-
-    // Event handler for dropdown change
-    function handleDropdownChange(event) {      
-        for (let i = 0; i < event.target.options.length; i++) {
-          if (selectedGroup === event.target.options[i].value) {
-            selectedGroupName = event.target.options[i].text;
-          }
-        }
-    }
 </script>
 
 <div class="button-container">
@@ -56,7 +45,6 @@
   {/await}
 </div>
 
-
 <div class="button-container">
   {#await Promise.all([loadingEvent, groupsPromises])}
     <p>Loading...</p>
@@ -66,13 +54,7 @@
         <div class="event-details">
           <p><strong>Start Tijd:</strong> {event.startingTime}</p>
           <p><strong>Eind Tijd:</strong> {event.endingTime}</p>
-            <p><strong>Groep:</strong> 
-                <select bind:value={selectedGroup} on:change={handleDropdownChange} class="group-selecter">
-                    {#each groupTable as group}
-                        <option value={group.id}>{group.name}</option>
-                    {/each}
-                </select>
-              </p>
+          <p><a href={`/groups/${event.groupId}`} ><strong>Groep: </strong>{event.groupId}</a></p>
           <p><strong>Locatie:</strong> {event.location}</p>
         </div>
       </div>
@@ -89,32 +71,33 @@
           year: "numeric"
         })}</p>
     </div>
+
+    <div class="flex w-max m-4">
+      <DeleteButton entityRoute="http://localhost:3000/events/events" entityId={webId} gotoRoute = '/agenda' />
+      <a href="{webId}/edit" class="ml-4">
+          <button class="flex text-center justify-center px-8 py-3 rounded-xl text-white button-color bg-blue-500 w-4/5">Aanpassen</button>
+      </a>
+    </div>
+
+    <div class="flex justify-center items-center">
+      <div class="p-2 mr-3 text-center">
+        <i class="fa-solid fa-address-card fa-3x"></i>
+        <p>contact</p>
+      </div>
+      <div class="p-2 text-center">
+        <a href="/groups/{event.groupId}"><i class="fa-solid fa-people-group fa-3x"></i></a>  
+        <a href="/groups/{event.groupId}"><p>deelnemers</p></a>
+      </div>
+      <div class="p-2 text-center">
+        <i class="fa-solid fa-pen-to-square fa-3x"></i> 
+        <p>Aanmelden</p>
+      </div>
+    </div>
+
   {:catch error}
     <p class="error-message">Error: {error.message}</p>
   {/await}
-
-  <div class="flex w-max m-4">
-    <DeleteButton entityRoute="http://localhost:3000/events/events" entityId={webId} gotoRoute = '/agenda' />
-    <a href="{webId}/edit" class="ml-4">
-        <button class="flex text-center justify-center px-8 py-3 rounded-xl text-white button-color bg-blue-500 w-4/5">Aanpassen</button>
-    </a>
-  </div>
     
-</div>
-
-<div class="flex justify-center items-center">
-  <div class="p-2 mr-3 text-center">
-    <i class="fa-solid fa-address-card fa-3x"></i>
-    <p>contact</p>
-  </div>
-  <div class="p-2 text-center">
-    <a href="/groups/{selectedGroup}"><i class="fa-solid fa-people-group fa-3x"></i></a>  
-    <a href="/groups/{selectedGroup}"><p>deelnemers</p></a>
-  </div>
-  <div class="p-2 text-center">
-    <i class="fa-solid fa-pen-to-square fa-3x"></i> 
-    <p>Aanmelden</p>
-  </div>
 </div>
 
 <style>
