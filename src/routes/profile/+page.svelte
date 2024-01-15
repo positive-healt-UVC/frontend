@@ -67,13 +67,13 @@
         class="flex flex-col"
       >
         <div class="flex flex-col mb-4">
-          <label for="name">Name:</label>
+          <label for="name">Naam:</label>
           <input bind:value={updatedData.name} type="text" id="name" name="name" />
 
-          <label for="age">Age:</label>
+          <label for="age">Leeftijd:</label>
           <input bind:value={updatedData.age} type="text" id="age" name="age" />
 
-          <label for="handicap">Handicap:</label>
+          <label for="handicap">Beperking:</label>
           <input
             bind:value={updatedData.handicap}
             type="text"
@@ -81,7 +81,7 @@
             name="handicap"
           />
 
-          <label for="phoneNum">Phonenumber:</label>
+          <label for="phoneNum">Telefoonnummer:</label>
           <input
             bind:value={updatedData.phoneNum}
             type="text"
