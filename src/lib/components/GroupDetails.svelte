@@ -16,6 +16,19 @@
     }
     let loadingEvent = getGroup();
 
+    async function getGroupMembers(groupId) {
+        try {
+            const res = await fetch(`http://localhost:3000/groups/members/group/${groupId}`);
+            const members = await res.json();
+            return members;
+        } catch (error) {
+            console.error('Error fetching group members:', error);
+            throw error; // Rethrow the error to be caught in the catch block
+        }
+    }
+
+    let loadingMembers = getGroupMembers(webId);
+
 </script>
 
 <div class="button-container">
@@ -42,18 +55,35 @@
         </div>
       </div>
 
-      <div class="event-grid">
-        <h1><strong>Deelnemers:</strong></h1>
-        {#each group.members as member (member.id)}
-        <div class="member-container">
-          <p><strong>{member.name}</strong></p>
-          <p>{member.phoneNum}</p>
-      </div>
-        {/each}
-      </div>
   {:catch error}
     <p class="error-message">Error: {error.message}</p>
   {/await}
+
+  <div class="event-grid">
+    <h1 class="text-lg font-semibold mb-4"><strong>Deelnemers:</strong></h1>
+    {#await loadingMembers}
+      <p>Loading members...</p>
+    {:then members}
+      <table class="min-w-full border-collapse border rounded overflow-hidden">
+        <thead class="text-white">
+          <tr>
+            <th class="py-2 px-4 text-sm font border text-white">Name</th>
+            <th class="py-2 px-4 text-sm border text-white">Beperking ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each members as member (member.id)}
+            <tr class="border-t">
+              <td class="py-2 px-4 text-sm border">{member.name}</td>
+              <td class="py-2 px-4 text-sm border">{member.handicapId}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    {:catch error}
+      <p class="error-message">Error: {error.message}</p>
+    {/await}
+  </div>
 
   <div class="flex w-max m-4">
     <DeleteButton entityRoute="http://localhost:3000/groups/groups" entityId={webId} gotoRoute = '/groups' />
