@@ -2,6 +2,7 @@
     import Buttons from "./Buttons.svelte";
     import UpcomingActivity from "./UpcomingActivity.svelte";
     import DeleteButton from '$lib/components/DeleteButton.svelte';
+    import { goto } from '$app/navigation';
 
     let webId = null;
     if (typeof window !== 'undefined') {
@@ -15,6 +16,27 @@
         return values 
     }
     let loadingEvent = getGroup();
+
+    async function getGroupMembers(groupId) {
+        try {
+            const res = await fetch(`http://localhost:3000/groups/members/group/${groupId}`);
+            const members = await res.json();
+            return members;
+        } catch (error) {
+            console.error('Error fetching group members:', error);
+            throw error;
+        }
+    }
+
+    let loadingMembers = getGroupMembers(webId);
+
+    async function redirectToMembers() {
+    await goto('../members');
+  }
+
+  async function redirectToHandicap(id) {
+    await goto(`../handicaps/${id}`);
+  }
 
 </script>
 
@@ -42,18 +64,37 @@
         </div>
       </div>
 
-      <div class="event-grid">
-        <h1><strong>Deelnemers:</strong></h1>
-        {#each group.members as member (member.id)}
-        <div class="member-container">
-          <p><strong>{member.name}</strong></p>
-          <p>{member.phoneNum}</p>
-      </div>
-        {/each}
-      </div>
   {:catch error}
     <p class="error-message">Error: {error.message}</p>
   {/await}
+
+  <div class="event-grid">
+    <button on:click={redirectToMembers} class="ml-4">
+      <a class="text-lg font-semibold  text-white">Deelnemers </a> <i class="fa-regular fa-pen-to-square text-white"></i>
+    </button>
+    {#await loadingMembers}
+      <p>Loading members...</p>
+    {:then members}
+      <table class="min-w-full border-collapse border rounded overflow-hidden">
+        <thead class="text-white">
+          <tr>
+            <th class="py-2 px-4 text-sm font border text-white">Name</th>
+            <th class="py-2 px-4 text-sm border text-white">Beperking ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each members as member (member.id)}
+            <tr class="border-t">
+              <td class="py-2 px-4 text-sm border text-white">{member.name}</td>
+              <td class="py-2 px-4 text-sm border text-white" on:click={() => redirectToHandicap(member.handicapId)}>{member.handicapId}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    {:catch error}
+      <p class="error-message">Error: {error.message}</p>
+    {/await}
+  </div>
 
   <div class="flex w-max m-4">
     <DeleteButton entityRoute="http://localhost:3000/groups/groups" entityId={webId} gotoRoute = '/groups' />
