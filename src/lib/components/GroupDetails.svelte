@@ -2,6 +2,7 @@
     import Buttons from "./Buttons.svelte";
     import UpcomingActivity from "./UpcomingActivity.svelte";
     import DeleteButton from '$lib/components/DeleteButton.svelte';
+    import { goto } from '$app/navigation';
 
     let webId = null;
     if (typeof window !== 'undefined') {
@@ -23,11 +24,19 @@
             return members;
         } catch (error) {
             console.error('Error fetching group members:', error);
-            throw error; // Rethrow the error to be caught in the catch block
+            throw error;
         }
     }
 
     let loadingMembers = getGroupMembers(webId);
+
+    async function redirectToMembers() {
+    await goto('../members');
+  }
+
+  async function redirectToHandicap(id) {
+    await goto(`../handicaps/${id}`);
+  }
 
 </script>
 
@@ -60,7 +69,9 @@
   {/await}
 
   <div class="event-grid">
-    <h1 class="text-lg font-semibold mb-4"><strong>Deelnemers:</strong></h1>
+    <button on:click={redirectToMembers} class="ml-4">
+      <a class="text-lg font-semibold  text-white">Deelnemers </a> <i class="fa-regular fa-pen-to-square text-white"></i>
+    </button>
     {#await loadingMembers}
       <p>Loading members...</p>
     {:then members}
@@ -74,8 +85,8 @@
         <tbody>
           {#each members as member (member.id)}
             <tr class="border-t">
-              <td class="py-2 px-4 text-sm border">{member.name}</td>
-              <td class="py-2 px-4 text-sm border">{member.handicapId}</td>
+              <td class="py-2 px-4 text-sm border text-white">{member.name}</td>
+              <td class="py-2 px-4 text-sm border text-white" on:click={() => redirectToHandicap(member.handicapId)}>{member.handicapId}</td>
             </tr>
           {/each}
         </tbody>

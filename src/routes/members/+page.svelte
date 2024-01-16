@@ -1,6 +1,9 @@
 <script>
   import { onMount } from 'svelte';
+  import { goto } from "$app/navigation";
   import BackButton from '$lib/components/BackButton.svelte';
+  import DeleteModal from '$lib/components/DeleteModal.svelte';
+  import UpdateModal from '$lib/components/Modal.svelte';
 
   // Function to fetch all members
   const getAllMembers = async () => {
@@ -15,6 +18,9 @@
   };
 
   let members = [];
+  let showDeleteModal = false;
+  let memberToDelete = null;
+  let showUpdateModal = false;
 
   onMount(async () => {
     members = await getAllMembers();
@@ -28,11 +34,17 @@
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          name: data.name,
+          handicapId: data.handicapId,
+          groupId: data.groupId,
+        }),
       });
 
       if (response.ok) {
         console.log(`Member ${id} updated successfully!`);
+        // Show the update modal
+        showUpdateModal = true;
       } else {
         console.error(`Failed to update Member ${id}`);
       }
@@ -50,7 +62,6 @@
 
       if (response.ok) {
         console.log(`Member ${id} deleted successfully!`);
-        // Optionally, update the members array to reflect the changes
         members = members.filter(member => member.id !== id);
       } else {
         console.error(`Failed to delete Member ${id}`);
@@ -59,62 +70,151 @@
       console.error('Error:', error instanceof Error ? error.message : error);
     }
   };
-  
+
+  // Function to open the delete modal
+  const openDeleteModal = (id) => {
+    memberToDelete = id;
+    showDeleteModal = true;
+  };
+
+  // Function to handle member deletion
+  const handleDelete = async () => {
+    await deleteMember(memberToDelete);
+    showDeleteModal = false;
+    memberToDelete = null;
+  };
+
+  // Function to handle modal close and redirect to ./groups
+  const handleModalClick = () => {
+    showUpdateModal = false;
+    goto('./groups'); // Redirect to ./groups
+  };
+
 </script>
 
 <BackButton />
 
-<div class="bg-sky container mx-auto min-h-screen flex flex-col items-center">
-  <h1 class="mt-10 text-2xl font-bold border-b-2 text-center mb-5">
-    Deelnemers bewerken
+<DeleteModal bind:show={showDeleteModal} on:confirm={handleDelete} on:cancel={() => showDeleteModal = false} />
+<UpdateModal bind:show={showUpdateModal}>
+  <p>Activiteit toegevoegd!</p>
+  <button class="mt-4 w-30 flex items-center text-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl button-color md:py-4 md:text-lg md:px-10" on:click={handleModalClick}>Sluiten</button>
+</UpdateModal>
+
+<div class="bg-sky container mx-auto min-h-screen flex flex-col items-center mt-12">
+  <h1 class="text-2xl font-bold border-b-2 text-center mb-5">
+    Alle Deelnemers bewerken
   </h1>
 
   <!-- Table for displaying and editing members -->
-<table class="min-w-full border-collapse border rounded overflow-hidden">
-  <thead class="">
-    <tr>
-      <th class="py-2 px-4 text-sm font border">Naam Lid</th>
-      <th class="py-2 px-4 text-sm border">Beperking ID</th>
-      <th class="py-2 px-4 text-sm border">Group ID</th> <!-- Add this line -->
-      <th class="py-2 px-4 text-sm border">Acties</th>
-    </tr>
-  </thead>
-  <tbody>
-    {#each members as { id, name, handicapId, groupId }}
-      <tr class="border-t">
-        <td class="py-2 px-4 text-sm border">
-          <input id={`memberName-${id}`} type="text" class="w-full px-2 py-1 border rounded focus:border-gray-500" bind:value={name} />
-        </td>
-        <td class="py-2 px-4 text-sm border">
-          <input id={`memberHandicap-${id}`} type="text" class="w-full px-2 py-1 border rounded focus:border-gray-500" bind:value={handicapId} />
-        </td>
-        <td class="py-2 px-4 text-sm border">
-          <input id={`memberGroupId-${id}`} type="text" class="w-full px-2 py-1 border rounded focus:border-gray-500" bind:value={groupId} />
-        </td>
-        <td class="py-2 px-4 text-sm border">
-          <button type="button" class="text-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-xl button-color button-bg" on:click={() => updateMember(id, { name, handicapId, groupId })}>
-            <i class="fa-regular fa-pen-to-square"></i>
-          </button>
-          <button type="button" class="text-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-xl button-color button-bg" on:click={() => deleteMember(id)}>
-            <i class="fa-solid fa-trash-can" style="color: #d01124;"></i>
-          </button>
-        </td>
+  <table class="min-w-full border-collapse border rounded overflow-hidden">
+    <thead class="">
+      <tr>
+        <th class="py-2 px-4 text-sm font border">Naam Lid</th>
+        <th class="py-2 px-4 text-sm border">Beperking ID</th>
+        <th class="py-2 px-4 text-sm border">Group ID</th>
+        <th class="py-2 px-4 text-sm border">Acties</th>
       </tr>
-    {/each}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {#each members as { id, name, handicapId, groupId }}
+        <tr class="border-t">
+          <td class="py-2 px-4 text-sm border">
+            <input id={`memberName-${id}`} type="text" class="w-full px-2 py-1 border rounded focus:border-gray-500" bind:value={name} />
+          </td>
+          <td class="py-2 px-4 text-sm border">
+            <input id={`memberHandicap-${id}`} type="text" class="w-full px-2 py-1 border rounded focus:border-gray-500" bind:value={handicapId} />
+          </td>
+          <td class="py-2 px-4 text-sm border">
+            <input id={`memberGroupId-${id}`} type="text" class="w-full px-2 py-1 border rounded focus:border-gray-500" bind:value={groupId} />
+          </td>
+          <td class="py-2 px-4 text-sm border">
+            <div class="flex items-center">
+              <button type="button" class="text-center justify-center px-2 py- border border-transparent text-base font-medium rounded-xl button-bg" on:click={() => updateMember(id, { name, handicapId, groupId })}>
+                <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+              <button type="button" class="text-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-xl button-bg" on:click={() => openDeleteModal(id)}>
+                <i class="fa-solid fa-trash-can" style="color: #d01124;"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      {/each}
+    </tbody>
+  </table>
 
-  <div class="mt-10">
+  <div class="mt-10 mb-20">
     <p>Betekenis symbolen:</p>
-    <li><i class="fa-regular fa-pen-to-square "></i> = Aanpassen</li>
+    <li><i class="fa-regular fa-pen-to-square"></i> = Aanpassen</li>
     <li><i class="fa-solid fa-trash-can" style="color: #d01124;"></i>= Verwijderen</li>
   </div>
 
   <style>
     .bg-sky {
-      background-image: url('public/static/imgs/BG_Light_Blue.png');
+      background-image: url('../../../static/imgs/BG_Light_Blue.png');
       background-position: center;
     }
-
   </style>
 </div>
+
+<style>
+  /* Styles for the DeleteModal component */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    .confirm-button {
+      background-color: #ff9d00;
+      width: 40%;
+    }
+
+    .cancel-button {
+      width: 40%;
+    }
+
+    /* Styles for the UpdateModal component */
+    .modal {
+      display: block;
+      position: fixed;
+      width: 120%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      position: absolute;
+      top: 25%;
+      left: 45%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .button-color {
+    background-color: #ff9d00;
+  }
+  </style>
