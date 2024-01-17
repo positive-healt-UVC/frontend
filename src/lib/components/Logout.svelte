@@ -2,7 +2,7 @@
   let isHovered = false;
 
 function goToHome() {
-  window.location.href = '/home';
+  window.location.href = '/';
 }
 </script>
 
