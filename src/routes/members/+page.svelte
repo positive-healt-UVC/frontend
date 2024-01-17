@@ -17,6 +17,18 @@
     }
   };
 
+  // Function to fetch handicaps
+  async function getAllHandicaps() {
+    try {
+      const response = await fetch('http://localhost:3000/handicaps/handicaps/');
+      const handicaps = await response.json();
+      return handicaps;
+    } catch (error) {
+      console.error('Error fetching handicaps:', error);
+      throw error;
+    }
+  }
+
   let members = [];
   let showDeleteModal = false;
   let memberToDelete = null;
@@ -26,9 +38,11 @@
     handicapId: "",
     groupId: "",
   };
+  let handicaps = [];
 
   onMount(async () => {
     members = await getAllMembers();
+    handicaps = await getAllHandicaps();
   });
 
   // Function to update a specific member
@@ -138,67 +152,77 @@
     Alle Deelnemers bewerken
   </h1>
 
-<!-- Table for displaying and editing members -->
-<table class="min-w-full border-collapse border rounded overflow-hidden">
-  <thead class="">
-    <tr>
-      <th class="py-2 px-4 text-sm font border">Naam Lid</th>
-      <th class="py-2 px-4 text-sm border">Beperking ID</th>
-      <th class="py-2 px-4 text-sm border">Group ID</th>
-      <th class="py-2 px-4 text-sm border">Acties</th>
-    </tr>
-  </thead>
-  <tbody>
-    {#each members as { id, name, handicapId, groupId }}
-      <tr class="border-t">
+  <!-- Table for displaying and editing members -->
+  <table class="min-w-full border-collapse border rounded overflow-hidden">
+    <thead class="">
+      <tr>
+        <th class="py-2 px-4 text-sm font border">Naam Lid</th>
+        <th class="py-2 px-4 text-sm border">Beperking</th>
+        <th class="py-2 px-4 text-sm border">Group ID</th>
+        <th class="py-2 px-4 text-sm border">Acties</th>
+      </tr>
+    </thead>
+    <tbody>
+      {#each members as { id, name, handicapId, groupId }}
+        <tr class="border-t">
+          <td class="py-2 px-4 text-sm border">
+            <input id={`memberName-${id}`} type="text" class="w-full px-2 py-1 border rounded focus:border-gray-500" bind:value={name} />
+          </td>
+          <td class="py-2 px-4 text-sm border">
+            <!-- Dropdown for handicaps -->
+            <select bind:value={handicapId} class="w-full px-2 py-1 border rounded focus:border-gray-500">
+              {#each handicaps as { id: handicapId, name }}
+                <option value={handicapId}>{name}</option>
+              {/each}
+            </select>
+          </td>
+          <td class="py-2 px-4 text-sm border">
+            <input id={`memberGroupId-${id}`} type="text" class="w-full px-2 py-1 border rounded focus:border-gray-500" bind:value={groupId} />
+          </td>
+          <td class="py-2 px-4 text-sm border">
+            <div class="flex items-center space-x-2">
+              <button type="button" class="text-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-xl button-bg" on:click={() => updateMember(id, { name, handicapId, groupId })}>
+                <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+              <button type="button" class="text-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-xl button-bg" on:click={() => openDeleteModal(id)}>
+                <i class="fa-solid fa-trash-can" style="color: #d01124;"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      {/each}
+
+      <!-- Row for adding a new member -->
+      <tr>
         <td class="py-2 px-4 text-sm border">
-          <input id={`memberName-${id}`} type="text" class="w-full px-2 py-1 border rounded focus:border-gray-500" bind:value={name} />
+          <input type="text" bind:value={newMember.name} placeholder="Name" class="w-full px-1 py-1 border rounded focus:border-gray-500" />
         </td>
         <td class="py-2 px-4 text-sm border">
-          <input id={`memberHandicap-${id}`} type="text" class="w-full px-2 py-1 border rounded focus:border-gray-500" bind:value={handicapId} />
+          <!-- Dropdown for handicaps -->
+          <select bind:value={newMember.handicapId} class="w-full px-2 py-1 border rounded focus:border-gray-500">
+            {#each handicaps as { id, name }}
+              <option value={id}>{name}</option>
+            {/each}
+          </select>
         </td>
         <td class="py-2 px-4 text-sm border">
-          <input id={`memberGroupId-${id}`} type="text" class="w-full px-2 py-1 border rounded focus:border-gray-500" bind:value={groupId} />
+          <input type="text" bind:value={newMember.groupId} placeholder="Group ID" class="w-full px-2 py-1 border rounded focus:border-gray-500" />
         </td>
         <td class="py-2 px-4 text-sm border">
-          <div class="flex items-center space-x-2">
-            <button type="button" class="text-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-xl button-bg" on:click={() => updateMember(id, { name, handicapId, groupId })}>
-              <i class="fa-regular fa-pen-to-square"></i>
-            </button>
-            <button type="button" class="text-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-xl button-bg" on:click={() => openDeleteModal(id)}>
-              <i class="fa-solid fa-trash-can" style="color: #d01124;"></i>
-            </button>
-          </div>
+          <button type="button" on:click={addNewMember} class="text-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-xl button-bg">
+            <i class="fa-solid fa-plus"></i>
+          </button>
         </td>
       </tr>
-    {/each}
+    </tbody>
+  </table>
 
-    <!-- Row for adding a new member -->
-    <tr>
-      <td class="py-2 px-4 text-sm border">
-        <input type="text" bind:value={newMember.name} placeholder="Name" class="w-full px-1 py-1 border rounded focus:border-gray-500" />
-      </td>
-      <td class="py-2 px-4 text-sm border">
-        <input type="text" bind:value={newMember.handicapId} placeholder="Beperking ID" class="w-full px-2 py-1 border rounded focus:border-gray-500" />
-      </td>
-      <td class="py-2 px-4 text-sm border">
-        <input type="text" bind:value={newMember.groupId} placeholder="Group ID" class="w-full px-2 py-1 border rounded focus:border-gray-500" />
-      </td>
-      <td class="py-2 px-4 text-sm border">
-        <button type="button" on:click={addNewMember} class="text-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-xl button-bg">
-          <i class="fa-solid fa-plus"></i>
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="mt-10 mb-20">
-  <p>Uitleg symbolen:</p>
-  <li><i class="fa-regular fa-pen-to-square mb-1"></i>  Gegevens van deelnemer Aanpassen</li>
-  <li><i class="fa-solid fa-trash-can" style="color: #d01124;"></i>  Deelnemer Verwijderen</li>
-  <li><i class="fa-solid fa-plus"></i> Nieuwe deelnemer toegevoegd</li>
-</div>
+  <div class="mt-10 mb-20">
+    <p>Uitleg symbolen:</p>
+    <li><i class="fa-regular fa-pen-to-square mb-1"></i>  Gegevens van deelnemer Aanpassen</li>
+    <li><i class="fa-solid fa-trash-can" style="color: #d01124;"></i>  Deelnemer Verwijderen</li>
+    <li><i class="fa-solid fa-plus"></i> Nieuwe deelnemer toegevoegd</li>
+  </div>
 
   <style>
     .bg-sky {
