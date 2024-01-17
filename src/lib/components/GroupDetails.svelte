@@ -96,12 +96,17 @@
     {/await}
   </div>
 
-  <div class="flex w-max m-4">
+  <div class="flex w-max m-3">
     <DeleteButton entityRoute="http://localhost:3000/groups/groups" entityId={webId} gotoRoute = '/groups' />
     <a href="{webId}/edit" class="ml-4">
         <button class="flex text-center justify-center px-8 py-3 rounded-xl text-white button-color bg-blue-500 w-4/5">Aanpassen</button>
     </a>
   </div>
+</div>
+
+<div class="p-2 text-center">
+  <button on:click={redirectToMembers}><i class="fa-solid fa-people-group fa-3x"></i></button>
+  <p>Alle deelnemers</p>
 </div>
 
 <style>
