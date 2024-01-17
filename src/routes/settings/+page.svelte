@@ -1,9 +1,11 @@
 <script>
   import BackButton from "$lib/components/BackButton.svelte";
   import Buttons from "$lib/components/Buttons.svelte";
+    import Logout from "$lib/components/Logout.svelte";
 </script>
 
 <BackButton></BackButton>
+<Logout />
 
 <div>
   <div class="min-h-screen bg-sky flex flex-col items-center">

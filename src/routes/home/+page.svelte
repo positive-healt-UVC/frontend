@@ -6,6 +6,8 @@
 </script>
 
 <body transition:fly={{ y: 300, duration: 300 }}>
+  
+  <Logout />
 
 <div class="min-h-screen bg-sky flex flex-col items-center">
   <div class="h-2" />

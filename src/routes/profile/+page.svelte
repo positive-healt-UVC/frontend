@@ -1,8 +1,12 @@
 <script>
   import { onMount } from "svelte";
+  import { goto } from "$app/navigation";
   import BackButton from "$lib/components/BackButton.svelte";
   import Logout from "$lib/components/Logout.svelte";
   import idStore from "../../stores/idStore";
+  import ProfileModal from "$lib/components/ProfileModal.svelte";
+  import Modal from "$lib/components/Modal.svelte";
+  
 
   const userStore = $idStore;
 
@@ -44,11 +48,26 @@
     }
   }
 
+  let showModal = false;
+
+function openModal() {
+  showModal = true;
+}
+
+function handleModalClick() {
+  goto(`../home`);
+}
+
   onMount(fillUserData);
 </script>
 
 <BackButton />
 <Logout />
+
+<ProfileModal bind:show={showModal}>
+  <p>Uw wijzigingen zijn opgeslagen.</p>
+  <button class="mt-4 w-30 flex items-center text-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-black button-color md:py-4 md:text-lg md:px-10" on:click={handleModalClick}>Ga terug naar het dashboard.</button>
+</ProfileModal>
 
 <body>
   <div class="min-h-screen bg-sky flex flex-col items-center">
@@ -93,6 +112,7 @@
           type="submit"
           value="Opslaan"
           class="w-30 flex items-center text-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white button-color md:py-4 md:text-lg md:px-10 hover:bg-blue-500 hover:text-white transition bottom"
+          on:click={openModal}
         />
       </form>
     </div>
