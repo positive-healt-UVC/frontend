@@ -107,7 +107,7 @@
       <button
         type="submit"
         class="w-full button-color text-white px-4 py-2 rounded-xl hover:bg-green-400">
-        Activiteit aanmaken
+        Groep aanmaken
       </button>
     </form>
   </div>
