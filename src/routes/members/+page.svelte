@@ -29,6 +29,18 @@
     }
   }
 
+    // Function to fetch handicaps
+    async function getAllUsers() {
+    try {
+      const response = await fetch('http://localhost:3011/users');
+      const users = await response.json();
+      return users;
+    } catch (error) {
+      console.error('Error fetching handicaps:', error);
+      throw error;
+    }
+  }
+
   let members = [];
   let showDeleteModal = false;
   let memberToDelete = null;
@@ -39,10 +51,12 @@
     groupId: "",
   };
   let handicaps = [];
+  let users = [];
 
   onMount(async () => {
     members = await getAllMembers();
     handicaps = await getAllHandicaps();
+    users = await getAllUsers();
   });
 
   // Function to update a specific member
@@ -143,7 +157,7 @@
 
 <DeleteModal bind:show={showDeleteModal} on:confirm={handleDelete} on:cancel={() => showDeleteModal = false} />
 <UpdateModal bind:show={showUpdateModal}>
-  <p>Activiteit toegevoegd!</p>
+  <p>Gegvens Aangepast!</p>
   <button class="mt-4 w-30 flex items-center text-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl button-color md:py-4 md:text-lg md:px-10" on:click={handleModalClick}>Sluiten</button>
 </UpdateModal>
 
@@ -166,8 +180,13 @@
       {#each members as { id, name, handicapId, groupId }}
         <tr class="border-t">
           <td class="py-2 px-4 text-sm border">
-            <input id={`memberName-${id}`} type="text" class="w-full px-2 py-1 border rounded focus:border-gray-500" bind:value={name} />
+            <select bind:value={name} class="w-full px-2 py-1 border rounded focus:border-gray-500">
+              {#each users as { name: name }}
+                <option value={name}>{name}</option>
+              {/each}
+            </select>
           </td>
+          
           <td class="py-2 px-4 text-sm border">
             <!-- Dropdown for handicaps -->
             <select bind:value={handicapId} class="w-full px-2 py-1 border rounded focus:border-gray-500">
