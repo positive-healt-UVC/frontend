@@ -1,71 +1,124 @@
 <script>
-    import FormInput from "$lib/components/FormInput.svelte";
-    import BackButton from "$lib/components/BackButton.svelte";
-    import { fly } from "svelte/transition";
-    import Logout from "$lib/components/Logout.svelte";
+  import { onMount } from "svelte";
+  import { goto } from "$app/navigation";
+  import BackButton from "$lib/components/BackButton.svelte";
+  import Logout from "$lib/components/Logout.svelte";
+  import idStore from "../../stores/idStore";
+  import ProfileModal from "$lib/components/ProfileModal.svelte";
+  import Modal from "$lib/components/Modal.svelte";
+  
+
+  const userStore = $idStore;
+
+  let data = { user: { name: "", age: "", handicap: "", phoneNum: "" } };
+  let updatedData = { ...data.user };
+
+  async function fillUserData() {
+    try {
+      const res = await fetch(`http://localhost:3011/users/${userStore}`);
+      data = await res.json();
+      updatedData = { ...data.user };
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      throw error;
+    }
+  }
+
+  async function updateUserData() {
+    try {
+      const response = await fetch(`http://localhost:3011/users/${userStore}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
+      });
+
+      if (response.ok) {
+        console.log("User data updated successfully");
+        // Reload user data after successful update
+        await fillUserData();
+      } else {
+        console.error("Failed to update user data");
+      }
+    } catch (error) {
+      console.error("Error updating user data:", error);
+      throw error;
+    }
+  }
+
+  let showModal = false;
+
+function openModal() {
+  showModal = true;
+}
+
+function handleModalClick() {
+  goto(`../home`);
+}
+
+  onMount(fillUserData);
 </script>
 
-<BackButton></BackButton>
+<BackButton />
+<Logout />
 
-<Logout/>
+<ProfileModal bind:show={showModal}>
+  <p>Uw wijzigingen zijn opgeslagen.</p>
+  <button class="mt-4 w-30 flex items-center text-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-black button-color md:py-4 md:text-lg md:px-10" on:click={handleModalClick}>Ga terug naar het dashboard.</button>
+</ProfileModal>
 
-<body transition:fly={{ y: 300, duration: 300 }}>
+<body>
+  <div class="min-h-screen bg-sky flex flex-col items-center">
+    <div class="h-2" />
 
+    <img
+      class="rounded-full w-40 h-100"
+      src=".//imgs/Placeholder_Profile.png"
+      alt="Placeholder"
+    />
 
-<div class="min-h-screen bg-sky flex flex-col items-center">
-  <div class="h-2" />
-  <!-- Create space at the top -->
-  <img
-    class="rounded-full w-40 h-100"
-    src=".//imgs/Placeholder_Profile.png"
-    alt="Placeholder"
-  />
+    <div class="h-40 mt-8 space-y-6">
+      <form
+        on:submit|preventDefault={updateUserData}
+        action="/profile"
+        class="flex flex-col"
+      >
+        <div class="flex flex-col mb-4">
+          <label for="name">Naam:</label>
+          <input bind:value={updatedData.name} type="text" id="name" name="name" />
 
-  <div class="h-40 mt-8 space-y-6">
-    <form action="/profile" class="flex flex-col">
-      <div class="flex flex-col mb-4">
-        <FormInput 
-        label={"fname"}
-        labeling={"Voornaam"}
-        type={"text"}
-        ></FormInput>
-        
-        <FormInput 
-        label={"lname"}
-        labeling={"Achternaam"}
-        type={"text"}
-        ></FormInput>
-        
-        <FormInput 
-        label={"geboortedatum"}
-        labeling={"Geboortedatum"}
-        type={"date"}
-        ></FormInput>
+          <label for="age">Leeftijd:</label>
+          <input bind:value={updatedData.age} type="text" id="age" name="age" />
 
-        <FormInput 
-        label={"handicaps"}
-        labeling={"Handicaps"}
-        type={"text"}
-        ></FormInput>
-      </div>
-      
-      <!-- Submit button outside the flex container -->
-      <input type="submit" value="Opslaan" class="w-30 flex items-center text-center 
-      justify-center px-8 py-3 
-      border border-transparent 
-      text-base font-medium 
-      rounded-xl 
-      text-white 
-      button-color 
-      md:py-4 md:text-lg md:px-10 
-      hover:bg-blue-500 hover:text-white transition
-      bottom">
-    </form>
+          <label for="handicap">Beperking:</label>
+          <input
+            bind:value={updatedData.handicap}
+            type="text"
+            id="handicap"
+            name="handicap"
+          />
+
+          <label for="phoneNum">Telefoonnummer:</label>
+          <input
+            bind:value={updatedData.phoneNum}
+            type="text"
+            id="phoneNum"
+            name="phoneNum"
+          />
+        </div>
+        <input
+          type="submit"
+          value="Opslaan"
+          class="w-30 flex items-center text-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white button-color md:py-4 md:text-lg md:px-10 hover:bg-blue-500 hover:text-white transition bottom"
+          on:click={openModal}
+        />
+      </form>
+    </div>
+
+    <div class="mt-48 space-y-6" />
   </div>
-
-  <div class="mt-48 space-y-6" />
-</div>
-
 </body>
 
 <style>

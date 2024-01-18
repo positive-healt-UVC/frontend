@@ -6,6 +6,8 @@
 </script>
 
 <body transition:fly={{ y: 300, duration: 300 }}>
+  
+  <Logout />
 
 <div class="min-h-screen bg-sky flex flex-col items-center">
   <div class="h-2" />
@@ -16,7 +18,7 @@
     alt="AbilityLinkLogo"
   />
 
-  <div class="h-20 w-80 mt-8 space-y-6 mb-12">
+  <div class="h-20 w-80 mt-8 space-y-6 mb-20">
     <Buttons text={"Activiteit aanmaken"} href={"/activities/addActivity"} />
 
     <Buttons text={"Geplande activiteiten"} href={"/agenda"} />

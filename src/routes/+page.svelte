@@ -1,12 +1,13 @@
 <script>
   import { onMount } from 'svelte';
   import Buttons from '$lib/components/Buttons.svelte';
+  import AudioHelp from '$lib/components/AudioHelp.svelte';
 
   let currentIndex = 0;
   let text = [
-    { text: 'Ability Link transforms communication for individuals with disabilities, providing a user-friendly platform tailored to their needs.' },
-    { text: 'Ability Link revolutionizes communication for people with disabilities, offering an accessible and intuitive platform that empowers seamless interaction.' },
-    { text: 'Ability Link empowers individuals with disabilities by revolutionizing communication through its accessible and intuitive platform.' }
+    { text: 'Ability Link transformeert communicatie voor mensen met beperkingen en biedt een gebruiksvriendelijk platform dat is afgestemd op hun behoeften.' },
+    { text: 'Ability Link revolutioneert communicatie voor mensen met beperkingen en biedt een toegankelijk en intuïtief platform dat naadloze interactie mogelijk maakt.' },
+    { text: 'Ability Link geeft mensen met beperkingen de kracht door communicatie te revolutioneren met behulp van een toegankelijk en intuïtief platform.' }
   ];
 
   let feedbackUser = [
@@ -62,8 +63,10 @@
 
     <div class="h-20 w-80 mt-8 space-y-6 mb-12">
       <Buttons text={"Inloggen"} href={"/login"}/>
-      <Buttons text={"Registeren"} href={"/register"}/>
+      <Buttons text={"Registreren"} href={"/register"}/>
     </div>
+
+    <AudioHelp audioFile={'.//mp3/HomePagina2.mp3'}/>
 
     <div class="{fadeIn ? 'fade-in' : ''}">
       <img class="rounded-3xl mt-10 w-15 h-12" src="{profileImage[currentIndex].profileImage}" alt="ProfileImage"/>

@@ -11,6 +11,7 @@
 {#await groupsPromises}
   <li>...Waiting</li>
 {:then groups} 
+{#if groups.length > 0}
   {#each groups as group}
   <div class="button-color rounded-2xl">
     <a href="groups/{group.id}">
@@ -24,8 +25,11 @@
     </a>
   </div>
   {/each}
-  {:catch error}
-  <li>Error: {error.message}</li>
+  {:else}
+  <div class="button-error text-center text-white" id="weekSelector">
+    Geen groepen gevonden.
+  </div>    
+  {/if}
 {/await}
 
 <style>
@@ -82,4 +86,13 @@
     font-size: x-small;
     float: right;
   }
+
+  .button-error {
+      background-color: rgb(255, 0, 0);
+      border: none;
+      border-radius: 10px;
+      padding: 20px;
+      width: 100%;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
 </style>
