@@ -1,21 +1,20 @@
-AbilityLink SvelteKit
+#AbilityLink
 
-<p align="center">
- <a href="https://hz.nl">
-        <img src="https://img.shields.io/badge/Made for-Your University-blue.svg" alt="HZ University Course UVC"/></a>
-</p>
-<p align="center">
-    <a href="https://github.com/orgs/positive-healt-UVC/people">
-        <img src="https://img.shields.io/github/contributors/your-organization/abilitylink" alt="Contributors"/></a>
-    <a href="https://github.com/your-organization/abilitylink/actions/workflows/build.yml">
-        <img src="http://server.jimmaphy.nl:5173" alt="Build"/></a>
-    <a href="https://opensource.org/licenses/MIT">
-        <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT License"/></a>
-</p>
+De frontend van AbilityLink wordt gemaakt doormiddel van een Microservices Architectuur.
+Hierbij wordt er gebruik gemaakt van een API Gateway als toegang tot de andere services.
+Dit document beschrijft de design opbouw van de backend.
 
-# Sveltekit tailwind boilerplate
+## Project
 
-We use this Sveltekit and tailwind boilerplate throughout the whole course.
+AbilityLink is een mobiele app die tot doel heeft de communicatie tussen zorgbegeleiders en mensen met beperkingen te vereenvoudigen en hen te ondersteunen om meer te bewegen.
+
+De app is ontworpen met de volgende belangrijke doelstellingen in gedachten:
+
+AbilityLink is specifiek ontworpen om toegankelijk te zijn voor mensen met diverse beperkingen. De app biedt aanpasbare functies en ondersteunt verschillende communicatiemodi om een inclusieve ervaring te waarborgen.
+
+Zorgplanning en Activiteitenbeheer: De app bevat functies voor het plannen en beheren van activiteiten. Zorgbegeleiders kunnen activiteiten toewijzen aan groepen, en zowel begeleiders als deelnemers kunnen deze activiteiten zien in hun agenda. Dit bevordert een georganiseerde en gestructureerde benadering van zorg en stimuleert de deelnemers om actiever deel te nemen aan de activiteiten.
+
+Smartwatch Integratie met NFC: AbilityLink maakt gebruik van smartwatch, waardoor gebruikers kunnen inchecken bij activiteiten met behulp van NFC-technologie. Dit draagt bij aan een vloeiende en moeiteloze deelname aan geplande activiteiten.
 
 ## Developing
 
