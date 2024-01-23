@@ -15,16 +15,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Fetch tags from GitHub API
-      id: fetch-tags
-      run: |
-        tags=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-                "https://api.github.com/repos/${{ github.repository }}/tags" | \
-                jq -r '.[].name')
-        echo "::set-output name=tags::$tags"
-
-    - name: Display available tags
-      run: echo "Available tags: ${{ steps.fetch-tags.outputs.tags }}"
 
     - name: Checkout code
       uses: actions/checkout@v3
