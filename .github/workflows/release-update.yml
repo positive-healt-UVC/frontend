@@ -1,35 +1,43 @@
 name: Docker Image CI Update
 
 on:
-  workflow_run:
-    workflows:
-      - "Rollback"
-    types:
-      - completed
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Choose a tag to trigger the workflow'
+        required: true
 
 env:
   PACK_BUILDER: 'heroku/buildpacks:20'
 
 jobs:
-  build:
+  your_job_name:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Fetch tags from GitHub API
+      id: fetch-tags
+      run: |
+        tags=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                "https://api.github.com/repos/${{ github.repository }}/tags" | \
+                jq -r '.[].name')
+        echo "::set-output name=tags::$tags"
+
+    - name: Display available tags
+      run: echo "Available tags: ${{ steps.fetch-tags.outputs.tags }}"
+
     - name: Checkout code
       uses: actions/checkout@v3
       with:
-        ref: ${{ github.event.release.tag_name }}
+        ref: ${{ github.event.inputs.tag }}
 
-    - name: Check if release was updated
+    - name: Login to Docker Hub
+      run: docker login -u wum2004 -p dckr_pat_zmtO6E5ohRoCnnbdxjZ25CtaY9k
+
+    - name: Build and push Docker image
       run: |
-        if [ "${{ github.event_name }}" == "release" ]; then
-          echo "Release was updated. Running build process..."
-          docker login -u wum2004 -p dckr_pat_zmtO6E5ohRoCnnbdxjZ25CtaY9k
-          docker build -t wum2004/frontend:latest .
-          docker push wum2004/frontend:latest
-        else
-          echo "Release was not updated. Skipping build process."
-        fi
+        docker build -t wum2004/frontend:latest .
+        docker push wum2004/frontend:latest
 
   refresh:
     needs: build
