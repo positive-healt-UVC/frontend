@@ -23,3 +23,10 @@ jobs:
       run: |
         docker build -t wum2004/frontend:latest .
         docker push wum2004/frontend:latest
+
+  refresh:
+    runs-on: self-hosted
+
+    steps:
+    - name: Refresh Server
+      run: az container restart --name frontend --resource-group AbilityLink
