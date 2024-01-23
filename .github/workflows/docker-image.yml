@@ -1,0 +1,32 @@
+name: Docker Image CI
+
+on:
+  release:
+    types:
+      - published
+
+env:
+  PACK_BUILDER: 'heroku/buildpacks:20'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Login to Docker Hub
+      run: docker login -u wum2004 -p dckr_pat_zmtO6E5ohRoCnnbdxjZ25CtaY9k
+
+    - name: Build and push Docker image
+      run: |
+        docker build -t wum2004/frontend:latest .
+        docker push wum2004/frontend:latest
+
+  refresh:
+    runs-on: self-hosted
+
+    steps:
+    - name: Refresh Server
+      run: az container restart --name frontend --resource-group AbilityLink
