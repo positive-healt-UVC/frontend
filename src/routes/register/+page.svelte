@@ -134,7 +134,7 @@ const addUser = async () => {
 </body>
 
 <style>
-.bg-sky {
+  .bg-sky {
   background-image: url(".//imgs/BG_Light_Blue.png");
   background-position: center;
 }
