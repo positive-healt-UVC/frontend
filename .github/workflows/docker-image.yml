@@ -25,6 +25,7 @@ jobs:
         docker push wum2004/frontend:latest
 
   refresh:
+    needs: build
     runs-on: self-hosted
 
     steps:
