@@ -6,15 +6,16 @@ on:
   pull_request:
     branches: [ "CIN" ]
 
+env:
+  PACK_BUILDER: 'heroku/buildpacks:20'
+
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Login to Docker Hub
       run: docker login -u wum2004 -p dckr_pat_zmtO6E5ohRoCnnbdxjZ25CtaY9k
