@@ -1,10 +1,9 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches: [ "CIN" ]
-  pull_request:
-    branches: [ "CIN" ]
+  release:
+    types:
+      - published
 
 env:
   PACK_BUILDER: 'heroku/buildpacks:20'
@@ -12,13 +11,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    steps:
-    - name: Check Docker version
-      run: docker --version
-
-    - name: Print PATH
-      run: echo $PATH
 
     - name: Checkout code
       uses: actions/checkout@v3
