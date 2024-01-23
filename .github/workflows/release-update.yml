@@ -1,4 +1,4 @@
-name: Docker Image CI Update
+name: Change Release
 
 on:
   workflow_dispatch:
