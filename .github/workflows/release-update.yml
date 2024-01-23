@@ -1,0 +1,41 @@
+name: Docker Image CI Update
+
+on:
+  workflow_run:
+    workflows:
+      - "Rollback"
+    types:
+      - completed
+
+env:
+  PACK_BUILDER: 'heroku/buildpacks:20'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.release.tag_name }}
+
+    - name: Check if release was updated
+      run: |
+        if [ "${{ github.event_name }}" == "release" ]; then
+          echo "Release was updated. Running build process..."
+          docker login -u wum2004 -p dckr_pat_zmtO6E5ohRoCnnbdxjZ25CtaY9k
+          docker build -t wum2004/frontend:latest .
+          docker push wum2004/frontend:latest
+        else
+          echo "Release was not updated. Skipping build process."
+        fi
+
+  refresh:
+    needs: build
+    runs-on: self-hosted
+
+    steps:
+    - name: Refresh Server
+      shell: cmd
+      run: az container restart --name frontend --resource-group AbilityLink
