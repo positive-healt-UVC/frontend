@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   release:
-    types: [published, edited]
+    types: [published, released]
 
 env:
   PACK_BUILDER: 'heroku/buildpacks:20'
@@ -24,6 +24,7 @@ jobs:
       run: |
         docker build -t wum2004/frontend:latest .
         docker push wum2004/frontend:latest
+
 
   refresh:
     needs: build
