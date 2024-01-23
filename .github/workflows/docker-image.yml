@@ -29,4 +29,5 @@ jobs:
 
     steps:
     - name: Refresh Server
+      shell: cmd
       run: az container restart --name frontend --resource-group AbilityLink
