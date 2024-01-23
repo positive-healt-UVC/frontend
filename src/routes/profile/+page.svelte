@@ -6,12 +6,39 @@
   import idStore from "../../stores/idStore";
   import ProfileModal from "$lib/components/ProfileModal.svelte";
   import Modal from "$lib/components/Modal.svelte";
-  
+
+  // Function to fetch handicaps
+  async function getAllHandicaps() {
+    try {
+      const response = await fetch('http://localhost:3000/handicaps/handicaps/');
+      const handicaps = await response.json();
+      return handicaps;
+    } catch (error) {
+      console.error('Error fetching handicaps:', error);
+      throw error;
+    }
+  }
 
   const userStore = $idStore;
 
   let data = { user: { name: "", age: "", handicap: "", phoneNum: "" } };
   let updatedData = { ...data.user };
+  let handicaps = [];
+
+  onMount(async () => {
+    await fillUserData();
+    handicaps = await getAllHandicaps();
+  });
+
+  let showModal = false;
+
+  function openModal() {
+    showModal = true;
+  }
+
+  function handleModalClick() {
+    goto(`../home`);
+  }
 
   async function fillUserData() {
     try {
@@ -47,18 +74,6 @@
       throw error;
     }
   }
-
-  let showModal = false;
-
-function openModal() {
-  showModal = true;
-}
-
-function handleModalClick() {
-  goto(`../home`);
-}
-
-  onMount(fillUserData);
 </script>
 
 <BackButton />
@@ -92,13 +107,12 @@ function handleModalClick() {
           <label for="age">Leeftijd:</label>
           <input bind:value={updatedData.age} type="text" id="age" name="age" />
 
-          <label for="handicap">Beperking:</label>
-          <input
-            bind:value={updatedData.handicap}
-            type="text"
-            id="handicap"
-            name="handicap"
-          />
+          <label for="handicap"  class="mt-2">handicap:</label>
+            <select bind:value={updatedData.handicap} class="mb-2 p-1">
+              {#each handicaps as { name }}
+                <option value={name}>{name}</option>
+              {/each}
+            </select>
 
           <label for="phoneNum">Telefoonnummer:</label>
           <input
