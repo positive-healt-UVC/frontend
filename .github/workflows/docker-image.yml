@@ -14,6 +14,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Check Docker version
+      run: docker --version
+
+    - name: Print PATH
+      run: echo $PATH
+
     - name: Checkout code
       uses: actions/checkout@v3
 
@@ -22,6 +28,5 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t wum2004/frontend:latest -f Dockerfile .
+        docker build -t wum2004/frontend:latest .
         docker push wum2004/frontend:latest
-
