@@ -11,7 +11,7 @@ env:
   PACK_BUILDER: 'heroku/buildpacks:20'
 
 jobs:
-  your_job_name:
+  build:
     runs-on: ubuntu-latest
 
     steps:
