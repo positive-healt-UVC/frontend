@@ -2,8 +2,7 @@ name: Docker Image CI
 
 on:
   release:
-    types:
-      - [published, edited]
+    types: [published, edited]
 
 env:
   PACK_BUILDER: 'heroku/buildpacks:20'
